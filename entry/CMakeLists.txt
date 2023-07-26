@@ -1,7 +1,13 @@
-cmake_minimum_required(VERSION 3.20.0)
+################################################################
+# Essential Project Settings
+################################################################
 project(Entry
+        DESCRIPTION "Entry point to this application"
         LANGUAGES CXX)
-set(CMAKE_CXX_STANDARD 20)
 
+################################################################
+# Add Executable and Library Linkages
+################################################################
 add_executable(${PROJECT_NAME} main.cpp)
-
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+target_link_libraries(${PROJECT_NAME} PRIVATE my_library)

@@ -3,8 +3,10 @@
 //
 
 #include<iostream>
+#include"../src/include/Hello.hpp"
 
 int main(){
-    std::cout << "Hello! I'm staring over again." << std::endl;
+    Object object = Object(1,2);
+    std::cout << object << std::endl; // a b
     return 0;
 }
