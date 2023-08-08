@@ -2,11 +2,11 @@
 // Created by echo_ on 2023-07-25.
 //
 
-#include<iostream>
-#include"../src/include/Hello.hpp"
 
+#include "LibCore.hpp"
+#include <memory>
 int main(){
-    Object object = Object(1,2);
-    std::cout << object << std::endl; // a b
-    return 0;
+    std::unique_ptr<LibCore> libCore = std::make_unique<LibCore>();
+    libCore->RunOperatorOverrideExamples();
+    libCore->RunUndefinedBehaviorExamples();
 }

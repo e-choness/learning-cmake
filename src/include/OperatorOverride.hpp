@@ -7,6 +7,7 @@
 class Object{
 public:
     Object(int a, int b);
+
     friend std::ostream& operator<<(std::ostream& os, const Object& obj){
         os << obj.m_A << " and "<< obj.m_B;
         return os;
