@@ -18,13 +18,13 @@ endif()
 ################################################################
 # Link External Libraries
 ################################################################
-include(FetchContent)
-
-FetchContent_Declare(
-        fmtlib
-        GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-)
-FetchContent_MakeAvailable(fmtlib)
+#include(FetchContent)
+#
+#FetchContent_Declare(
+#        fmtlib
+#        GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+#)
+#FetchContent_MakeAvailable(fmtlib)
 
 ################################################################
 # Include subdirectories

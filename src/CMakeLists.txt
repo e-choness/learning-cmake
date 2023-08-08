@@ -7,14 +7,15 @@ set(INCLUDE_DIR "${SOURCE_DIR}/include")
 ################################################################
 # Define header files
 ################################################################
-set(HEADER_LIST "${INCLUDE_DIR}/hello.hpp")
+file(GLOB HEADER_LIST ${INCLUDE_DIR}/*.h ${INCLUDE_DIR}/*.hpp)
+file(GLOB SOURCE_LIST ${SOURCE_DIR}/*.cpp ${SOURCE_DIR}/*.cw)
 
 ################################################################
 # Add library
 ################################################################
-add_library(my_library "${SOURCE_DIR}/hello.cpp" ${HEADER_LIST})
+add_library(source_lib ${SOURCE_LIST} ${HEADER_LIST})
 
 ################################################################
 # Include directories
 ################################################################
-target_include_directories(my_library PRIVATE ${INCLUDE_DIR})
+target_include_directories(source_lib PUBLIC ${INCLUDE_DIR})
