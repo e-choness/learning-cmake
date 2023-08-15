@@ -19,3 +19,12 @@ add_library(source_lib ${SOURCE_LIST} ${HEADER_LIST})
 # Include directories
 ################################################################
 target_include_directories(source_lib PUBLIC ${INCLUDE_DIR})
+
+################################################################
+# Link libraries
+################################################################
+target_link_libraries(source_lib PUBLIC
+    glfw
+    volk
+    vk-bootstrap::vk-bootstrap
+)

@@ -5,6 +5,7 @@
 #pragma once
 #include"OperatorOverride.hpp"
 #include "UndefinedBehavior.hpp"
+#include "Concepts.hpp"
 
 class LibCore {
 public:
@@ -12,5 +13,7 @@ public:
     static void RunUndefinedBehaviorExamples();
 
 private:
-    Object object = Object{4,5};
+    Object object{Object{4,5}};
+    Concepts conceptsFloat{Concepts{3.4}};
+    Concepts conceptsPointer{Concepts{&object}};
 };
