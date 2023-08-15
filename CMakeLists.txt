@@ -31,3 +31,4 @@ endif()
 ################################################################
 add_subdirectory(src)
 add_subdirectory(entry)
+add_subdirectory(extern)
