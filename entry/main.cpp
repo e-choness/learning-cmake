@@ -3,17 +3,14 @@
 //
 
 
-//#include "LibCore.hpp"
-//#include <memory>
-#include "VulkanEngine.hpp"
+#include "LibCore.hpp"
+#include <memory>
 
 int main(){
-//    std::unique_ptr<LibCore> libCore = std::make_unique<LibCore>();
-//    libCore->RunOperatorOverrideExamples();
-//    libCore->RunUndefinedBehaviorExamples();
-        engine::VulkanEngine engine;
-        engine.init();
-        engine.run();
-        engine.cleanup();
-        return 0;
+    std::unique_ptr<LibCore> libCore = std::make_unique<LibCore>();
+    libCore->RunOperatorOverrideExamples();
+    libCore->RunUndefinedBehaviorExamples();
+    libCore->RunBinarySearch();
+//    int midpoint = static_cast<int>((7)/2);
+//    std::cout << midpoint << "\n";
 }

@@ -11,7 +11,7 @@ class LibCore {
 public:
     void RunOperatorOverrideExamples();
     static void RunUndefinedBehaviorExamples();
-
+    static void RunBinarySearch();
 private:
     Object object{Object{4,5}};
     Concepts conceptsFloat{Concepts{3.4}};
