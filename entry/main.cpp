@@ -11,6 +11,6 @@ int main(){
     libCore->RunOperatorOverrideExamples();
     libCore->RunUndefinedBehaviorExamples();
     libCore->RunBinarySearch();
-//    int midpoint = static_cast<int>((7)/2);
-//    std::cout << midpoint << "\n";
+    libCore->RunStaticMembersExamples();
+
 }

@@ -4,6 +4,7 @@
 
 #include "LibCore.hpp"
 #include "BinarySearch.hpp"
+#include "StaticMembers.hpp"
 #include <iostream>
 
 void LibCore::RunOperatorOverrideExamples() {
@@ -23,4 +24,8 @@ void LibCore::RunUndefinedBehaviorExamples() {
 
 void LibCore::RunBinarySearch() {
     BinarySearch({1,2,3,4,5,6,7,8}, 3);
+}
+
+void LibCore::RunStaticMembersExamples() {
+    StaticMembers::DisplayResult();
 }
