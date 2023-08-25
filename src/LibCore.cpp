@@ -5,6 +5,7 @@
 #include "LibCore.hpp"
 #include "BinarySearch.hpp"
 #include "StaticMembers.hpp"
+#include "LambdaFunctionPointer.hpp"
 #include <iostream>
 
 void LibCore::RunOperatorOverrideExamples() {
@@ -28,4 +29,10 @@ void LibCore::RunBinarySearch() {
 
 void LibCore::RunStaticMembersExamples() {
     StaticMembers::DisplayResult();
+}
+
+void LibCore::RunLambdaFunctionPointerExamples() {
+    LambdaFunctionPointer::RunLambdaExample();
+    LambdaFunctionPointer::RunSTDFunctionExample();
+    LambdaFunctionPointer::RunFunctionPointerExample();
 }
