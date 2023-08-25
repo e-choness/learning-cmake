@@ -12,5 +12,5 @@ int main(){
     libCore->RunUndefinedBehaviorExamples();
     libCore->RunBinarySearch();
     libCore->RunStaticMembersExamples();
-
+    libCore->RunLambdaFunctionPointerExamples();
 }

@@ -13,6 +13,7 @@ public:
     static void RunUndefinedBehaviorExamples();
     static void RunBinarySearch();
     static void RunStaticMembersExamples();
+    static void RunLambdaFunctionPointerExamples();
 private:
     Object object{Object{4,5}};
     Concepts conceptsFloat{Concepts{3.4}};
