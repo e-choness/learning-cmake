@@ -6,6 +6,7 @@
 #include "BinarySearch.hpp"
 #include "StaticMembers.hpp"
 #include "LambdaFunctionPointer.hpp"
+#include "SmartPointers.hpp"
 #include <iostream>
 
 void LibCore::RunOperatorOverrideExamples() {
@@ -35,4 +36,10 @@ void LibCore::RunLambdaFunctionPointerExamples() {
     LambdaFunctionPointer::RunLambdaExample();
     LambdaFunctionPointer::RunSTDFunctionExample();
     LambdaFunctionPointer::RunFunctionPointerExample();
+}
+
+void LibCore::RunSmartPointersExamples() {
+    SmartPointers::DisplayUniquePointerResult();
+    SmartPointers::DisplaySharedPointerResult();
+    SmartPointers::DisplayWeakPointerResult();
 }

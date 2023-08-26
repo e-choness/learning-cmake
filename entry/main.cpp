@@ -13,4 +13,5 @@ int main(){
     libCore->RunBinarySearch();
     libCore->RunStaticMembersExamples();
     libCore->RunLambdaFunctionPointerExamples();
+    libCore->RunSmartPointersExamples();
 }

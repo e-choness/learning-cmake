@@ -14,6 +14,7 @@ public:
     static void RunBinarySearch();
     static void RunStaticMembersExamples();
     static void RunLambdaFunctionPointerExamples();
+    static void RunSmartPointersExamples();
 private:
     Object object{Object{4,5}};
     Concepts conceptsFloat{Concepts{3.4}};
