@@ -5,7 +5,8 @@
 #include "SmartPointers.hpp"
 #include <iostream>
 
-void SmartPointers::DisplaySmartPointerResult() {
+void SmartPointers::DisplayUniquePointerResult() {
+    std::cout << "========================== The Beginning of Unique Pointer Examples ==========================\n";
     std::unique_ptr<int> uniquePtr = std::make_unique<int>(25);
     // unique pointer's ownership cannot be assigned using =
     // but using std::move() can reassign a unique pointer's ownership to an address.
@@ -16,10 +17,11 @@ void SmartPointers::DisplaySmartPointerResult() {
     std::unique_ptr<UniqueClass> uniqueClass{};
     // Initializing by using make_unique will invoke constructor and deconstructor.
     std::unique_ptr<UniqueClass> uniqueClass1 = std::make_unique<UniqueClass>();
-
+    std::cout << "========================== The End of Unique Pointer Examples ==========================\n";
 }
 
 void SmartPointers::DisplaySharedPointerResult() {
+    std::cout << "========================== The Beginning of Shared Pointer Examples ==========================\n";
     std::shared_ptr<SharedClass> sharedPtr = std::make_shared<SharedClass>();
     std::shared_ptr<SharedClass> sharedClass = std::make_shared<SharedClass>();
     std::cout << "Share pointer counts to the ownership of an address: " << sharedPtr.use_count() << "\n";
@@ -38,7 +40,21 @@ void SmartPointers::DisplaySharedPointerResult() {
         std::cout << "Share pointer counts to the ownership of an address: " << sharedClass.use_count() << "\n";
     }
     std::cout << "Share pointer counts to the ownership of an address: " << sharedPtr.use_count() << "\n";
+    std::cout << "========================== The End of Shared Pointer Examples ==========================\n";
 }
+
+void SmartPointers::DisplayWeakPointerResult() {
+    std::cout << "========================== The Beginning of Weak Pointer Examples ==========================\n";
+    std::weak_ptr<int> weakPtr;
+    {
+        std::shared_ptr<int> sharedPtr = std::make_shared<int>(42);
+        weakPtr = sharedPtr;
+        std::cout << "Weak Pointer count inside of a scope: " << weakPtr.use_count() << "\n";
+    }
+    std::cout << "Weak Pointer count outside of a scope: " << weakPtr.use_count() << "\n";
+    std::cout << "========================== The End of Weak Pointer Examples ==========================\n";
+}
+
 
 UniqueClass::UniqueClass() {
     std::cout << "I'm a constructor on this unique pointer." << "\n";

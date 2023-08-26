@@ -9,9 +9,9 @@
 class SmartPointers {
 public:
     // Three smart pointers: unique pointer, shared pointer, weak pointer
-    static void DisplaySmartPointerResult();
+    static void DisplayUniquePointerResult();
     static void DisplaySharedPointerResult();
-
+    static void DisplayWeakPointerResult();
 };
 
 class UniqueClass{

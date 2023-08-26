@@ -39,6 +39,7 @@ void LibCore::RunLambdaFunctionPointerExamples() {
 }
 
 void LibCore::RunSmartPointersExamples() {
-    SmartPointers::DisplaySmartPointerResult();
+    SmartPointers::DisplayUniquePointerResult();
     SmartPointers::DisplaySharedPointerResult();
+    SmartPointers::DisplayWeakPointerResult();
 }
