@@ -10,7 +10,7 @@ class SmartPointers {
 public:
     // Three smart pointers: unique pointer, shared pointer, weak pointer
     static void DisplaySmartPointerResult();
-
+    static void DisplaySharedPointerResult();
 
 };
 
@@ -18,7 +18,10 @@ class UniqueClass{
 public:
     UniqueClass();
     ~UniqueClass();
-    std::unique_ptr<int> GetPointer();
-private:
-    std::unique_ptr<int> m_UniquePtr;
+};
+
+class SharedClass{
+public:
+    SharedClass();
+    ~SharedClass();
 };
