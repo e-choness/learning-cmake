@@ -8,6 +8,7 @@
 #include "LambdaFunctionPointer.hpp"
 #include "SmartPointers.hpp"
 #include "BitFieldMember.hpp"
+#include "DesignatedInitializers.hpp"
 #include <iostream>
 
 void LibCore::RunOperatorOverrideExamples() {
@@ -48,3 +49,9 @@ void LibCore::RunSmartPointersExamples() {
 void LibCore::RunBitFieldMemberExamples() {
     BitFieldMember::DisplayStructPadding();
 }
+
+void LibCore::RunDesignatedInitializerExamples() {
+    DesignatedInitializers::DisplayInitializerResults();
+}
+
+
