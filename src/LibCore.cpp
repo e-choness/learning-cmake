@@ -9,6 +9,7 @@
 #include "SmartPointers.hpp"
 #include "BitFieldMember.hpp"
 #include "DesignatedInitializers.hpp"
+#include "TemplateLambda.hpp"
 #include <iostream>
 
 void LibCore::RunOperatorOverrideExamples() {
@@ -52,6 +53,11 @@ void LibCore::RunBitFieldMemberExamples() {
 
 void LibCore::RunDesignatedInitializerExamples() {
     DesignatedInitializers::DisplayInitializerResults();
+}
+
+void LibCore::RunTemplateLambdaExamples() {
+    TemplateLambda::DisplayTemplateLambdaResult();
+    TemplateLambda::DisplayTemplateVectorResult();
 }
 
 
