@@ -14,4 +14,5 @@ int main(){
     libCore->RunStaticMembersExamples();
     libCore->RunLambdaFunctionPointerExamples();
     libCore->RunSmartPointersExamples();
+    libCore->RunBitFieldMemberExamples();
 }
