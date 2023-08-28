@@ -17,6 +17,7 @@ public:
     static void RunSmartPointersExamples();
     static void RunBitFieldMemberExamples();
     static void RunDesignatedInitializerExamples();
+    static void RunTemplateLambdaExamples();
 private:
     Object object{Object{4,5}};
     Concepts conceptsFloat{Concepts{3.4}};
