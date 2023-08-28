@@ -15,4 +15,5 @@ int main(){
     libCore->RunLambdaFunctionPointerExamples();
     libCore->RunSmartPointersExamples();
     libCore->RunBitFieldMemberExamples();
+    libCore->RunDesignatedInitializerExamples();
 }
