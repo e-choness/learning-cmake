@@ -17,4 +17,5 @@ int main(){
     libCore->RunBitFieldMemberExamples();
     libCore->RunDesignatedInitializerExamples();
     libCore->RunTemplateLambdaExamples();
+    libCore->RunMultiThreadingExamples();
 }

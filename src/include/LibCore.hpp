@@ -18,6 +18,7 @@ public:
     static void RunBitFieldMemberExamples();
     static void RunDesignatedInitializerExamples();
     static void RunTemplateLambdaExamples();
+    static void RunMultiThreadingExamples();
 private:
     Object object{Object{4,5}};
     Concepts conceptsFloat{Concepts{3.4}};
