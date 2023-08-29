@@ -10,6 +10,7 @@
 #include "BitFieldMember.hpp"
 #include "DesignatedInitializers.hpp"
 #include "TemplateLambda.hpp"
+#include "MultiThreading.hpp"
 #include <iostream>
 
 void LibCore::RunOperatorOverrideExamples() {
@@ -58,6 +59,10 @@ void LibCore::RunDesignatedInitializerExamples() {
 void LibCore::RunTemplateLambdaExamples() {
     TemplateLambda::DisplayTemplateLambdaResult();
     TemplateLambda::DisplayTemplateVectorResult();
+}
+
+void LibCore::RunMultiThreadingExamples() {
+    MultiThreading::DisplayMultiThreadingResults();
 }
 
 
