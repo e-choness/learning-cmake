@@ -19,6 +19,7 @@ public:
     static void RunDesignatedInitializerExamples();
     static void RunTemplateLambdaExamples();
     static void RunMultiThreadingExamples();
+    static void RunDiamondInheritanceExamples();
 private:
     Object object{Object{4,5}};
     Concepts conceptsFloat{Concepts{3.4}};

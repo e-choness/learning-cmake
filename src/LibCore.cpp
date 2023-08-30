@@ -11,6 +11,7 @@
 #include "DesignatedInitializers.hpp"
 #include "TemplateLambda.hpp"
 #include "MultiThreading.hpp"
+#include "DiamondInheritance.hpp"
 #include <iostream>
 
 void LibCore::RunOperatorOverrideExamples() {
@@ -64,5 +65,11 @@ void LibCore::RunTemplateLambdaExamples() {
 void LibCore::RunMultiThreadingExamples() {
     MultiThreading::DisplayMultiThreadingResults();
 }
+
+void LibCore::RunDiamondInheritanceExamples() {
+    DiamondInheritance::DisplayDiamondInheritanceResult();
+}
+
+
 
 
