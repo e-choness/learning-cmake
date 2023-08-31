@@ -19,4 +19,5 @@ int main(){
     libCore->RunTemplateLambdaExamples();
     libCore->RunMultiThreadingExamples();
     libCore->RunDiamondInheritanceExamples();
+    libCore->RunIteratorsExamples();
 }
