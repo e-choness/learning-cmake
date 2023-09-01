@@ -8,4 +8,8 @@
 class Iterators {
 public:
     static void DisplayIteratorsResults();
+private:
+    static void AdvanceIterator();
+    static void BackInsertIterator();
+    static void IteratorBegin();
 };
