@@ -7,12 +7,16 @@
 #include <iterator>
 #include <iostream>
 #include <list>
+#include <deque>
+#include <algorithm>
 
 void Iterators::DisplayIteratorsResults() {
     std::cout << "========================== Begin of Iterator Examples ==========================\n";
     AdvanceIterator();
     BackInsertIterator();
     IteratorBegin();
+    Distance();
+    FrontInsertIterator();
     std::cout << "========================== End of Iterator Examples ==========================\n";
 }
 
@@ -52,6 +56,34 @@ void Iterators::IteratorBegin() {
         std::cout << " " << *it;
     std::cout << "\n";
 }
+
+void Iterators::Distance() {
+    std::list<int> aList;
+    for(int i=0; i<10; i++)
+        aList.push_back(i*10);
+
+    auto first = aList.begin();
+    auto last = aList.end();
+
+    std::cout << "The distance is: " << std::distance(first, last) << "\n";
+}
+
+void Iterators::FrontInsertIterator() {
+    std::deque<int> foo, bar;
+    for(int i=0; i<=5; i++){
+        foo.push_back(i);
+        bar.push_back(i*10);
+    }
+
+    std::copy(bar.begin(), bar.end(), std::front_inserter(foo));
+
+    std::cout << "foo contains:";
+    for(auto it = foo.begin(); it!=foo.end(); ++it)
+        std::cout << " " << *it;
+    std::cout << "\n";
+}
+
+
 
 
 
