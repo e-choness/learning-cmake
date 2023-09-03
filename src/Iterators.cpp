@@ -17,6 +17,7 @@ void Iterators::DisplayIteratorsResults() {
     IteratorBegin();
     Distance();
     FrontInsertIterator();
+    MakeMoveIterator();
     std::cout << "========================== End of Iterator Examples ==========================\n";
 }
 
@@ -80,6 +81,24 @@ void Iterators::FrontInsertIterator() {
     std::cout << "foo contains:";
     for(auto it = foo.begin(); it!=foo.end(); ++it)
         std::cout << " " << *it;
+    std::cout << "\n";
+}
+
+void Iterators::MakeMoveIterator() {
+    std::vector<std::string> foo(3);
+    std::vector<std::string> bar {"one", "two", "three"};
+
+    // move_iterator adapts an iterator so that dereferencing it produces rvalue references
+    // As if std::move was applied, while all other operations behave the same.
+    std::copy (std::make_move_iterator(bar.begin()),
+               std::make_move_iterator(bar.end()),
+               foo.begin());
+
+    bar.clear();
+
+    std::cout << "foo:";
+    for(auto& x: foo)
+        std::cout << " " << x;
     std::cout << "\n";
 }
 
