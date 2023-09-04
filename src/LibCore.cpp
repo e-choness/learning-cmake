@@ -12,6 +12,7 @@
 #include "TemplateLambda.hpp"
 #include "MultiThreading.hpp"
 #include "DiamondInheritance.hpp"
+#include "Iterators.hpp"
 #include <iostream>
 
 void LibCore::RunOperatorOverrideExamples() {
@@ -68,6 +69,10 @@ void LibCore::RunMultiThreadingExamples() {
 
 void LibCore::RunDiamondInheritanceExamples() {
     DiamondInheritance::DisplayDiamondInheritanceResult();
+}
+
+void LibCore::RunIteratorsExamples() {
+    Iterators::DisplayIteratorsResults();
 }
 
 
