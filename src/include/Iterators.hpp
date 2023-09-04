@@ -15,4 +15,6 @@ private:
     static void Distance();
     static void FrontInsertIterator();
     static void MakeMoveIterator();
+    static void Next();
+    static void Previous();
 };

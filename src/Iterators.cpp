@@ -18,6 +18,8 @@ void Iterators::DisplayIteratorsResults() {
     Distance();
     FrontInsertIterator();
     MakeMoveIterator();
+    Next();
+    Previous();
     std::cout << "========================== End of Iterator Examples ==========================\n";
 }
 
@@ -100,6 +102,27 @@ void Iterators::MakeMoveIterator() {
     for(auto& x: foo)
         std::cout << " " << x;
     std::cout << "\n";
+}
+
+void Iterators::Next() {
+    std::list<int> myList;
+    for(int i=0; i<10; i++){
+        myList.push_back(i*10);
+    }
+
+    std::cout << "my list:";
+    std::for_each(myList.begin(), std::next(myList.begin(),5),
+                  [](int x){std::cout << " " << x;});
+
+    std::cout << "\n";
+}
+
+void Iterators::Previous() {
+    std::list<int> myList;
+    for(int i=0; i<10; i++){
+        myList.push_back(i*10);
+    }
+    std::cout << "The last element is " << *std::prev(myList.end()) << "\n";
 }
 
 
