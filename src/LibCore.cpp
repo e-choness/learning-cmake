@@ -13,7 +13,6 @@
 #include "MultiThreading.hpp"
 #include "DiamondInheritance.hpp"
 #include "Iterators.hpp"
-#include "HelloWorld.h"
 #include <iostream>
 
 void LibCore::RunOperatorOverrideExamples() {
