@@ -13,7 +13,6 @@
 #include "MultiThreading.hpp"
 #include "DiamondInheritance.hpp"
 #include "Iterators.hpp"
-#include "HelloWorld.h"
 #include <iostream>
 
 void LibCore::RunOperatorOverrideExamples() {
@@ -74,12 +73,6 @@ void LibCore::RunDiamondInheritanceExamples() {
 
 void LibCore::RunIteratorsExamples() {
     Iterators::DisplayIteratorsResults();
-}
-
-void LibCore::RunHelloWorldExamples() {
-    HelloWorld::OutputOriginal();
-    HelloWorld::OutputNewer();
-    HelloWorld::OutputAfter23plus();
 }
 
 

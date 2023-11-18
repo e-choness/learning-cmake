@@ -21,9 +21,8 @@ public:
     static void RunMultiThreadingExamples();
     static void RunDiamondInheritanceExamples();
     static void RunIteratorsExamples();
-    static void RunHelloWorldExamples();
 private:
     Object object{Object{4,5}};
-    Concepts conceptsFloat{Concepts{3.4}};
-    Concepts conceptsPointer{Concepts{&object}};
+    [[maybe_unused]] Concepts conceptsFloat{Concepts{3.4}};
+    [[maybe_unused]] Concepts conceptsPointer{Concepts{&object}};
 };

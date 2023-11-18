@@ -20,5 +20,4 @@ int main(){
     libCore->RunMultiThreadingExamples();
     libCore->RunDiamondInheritanceExamples();
     libCore->RunIteratorsExamples();
-    LibCore->RunHelloWorldExamples();
 }
