@@ -76,12 +76,6 @@ void LibCore::RunIteratorsExamples() {
     Iterators::DisplayIteratorsResults();
 }
 
-void LibCore::RunHelloWorldExamples() {
-    HelloWorld::OutputOriginal();
-    HelloWorld::OutputNewer();
-    HelloWorld::OutputAfter23plus();
-}
-
 
 
 
