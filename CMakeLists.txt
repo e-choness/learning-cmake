@@ -16,19 +16,9 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 endif()
 
 ################################################################
-# Link External Libraries
-################################################################
-#include(FetchContent)
-#
-#FetchContent_Declare(
-#        fmtlib
-#        GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-#)
-#FetchContent_MakeAvailable(fmtlib)
-
-################################################################
 # Include subdirectories
 ################################################################
+add_subdirectory(extern)
 add_subdirectory(src)
 add_subdirectory(entry)
-add_subdirectory(extern)
+add_subdirectory(tests)
