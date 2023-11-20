@@ -7,6 +7,7 @@ project(Hello
         DESCRIPTION "An example project with CMAKE"
         LANGUAGES CXX)
 
+enable_testing()
 ################################################################
 # Set C++ Standard
 ################################################################
