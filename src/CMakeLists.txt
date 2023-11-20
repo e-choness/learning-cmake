@@ -8,7 +8,7 @@ set(INCLUDE_DIR "${SOURCE_DIR}/include")
 # Define header files
 ################################################################
 file(GLOB HEADER_LIST ${INCLUDE_DIR}/*.h ${INCLUDE_DIR}/*.hpp)
-file(GLOB SOURCE_LIST ${SOURCE_DIR}/*.cpp ${SOURCE_DIR}/*.cw)
+file(GLOB SOURCE_LIST ${SOURCE_DIR}/*.cpp ${SOURCE_DIR}/*.c)
 
 ################################################################
 # Add library
