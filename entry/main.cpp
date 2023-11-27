@@ -7,17 +7,5 @@
 #include <memory>
 
 int main(){
-    std::unique_ptr<LibCore> libCore = std::make_unique<LibCore>();
-    libCore->RunOperatorOverrideExamples();
-    libCore->RunUndefinedBehaviorExamples();
-    libCore->RunBinarySearch();
-    libCore->RunStaticMembersExamples();
-    libCore->RunLambdaFunctionPointerExamples();
-    libCore->RunSmartPointersExamples();
-    libCore->RunBitFieldMemberExamples();
-    libCore->RunDesignatedInitializerExamples();
-    libCore->RunTemplateLambdaExamples();
-    libCore->RunMultiThreadingExamples();
-    libCore->RunDiamondInheritanceExamples();
-    libCore->RunIteratorsExamples();
+
 }
