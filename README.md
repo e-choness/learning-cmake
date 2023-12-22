@@ -1,5 +1,11 @@
 # :fire:Self-Taught CMake Examples
 
+## :pencil2: Notes
+
+- This example is done using [Visual Studio Code](https://code.visualstudio.com/) with `CMake Tools` and related plugins.
+- [CLion](https://www.jetbrains.com/clion/) also does a great job supporting complete configuration and CMake automation support.
+- [Visual Studio](https://visualstudio.microsoft.com/) also supports CMake, it's just not my first choice of IDE.
+
 ## :+1: Add Executable
 
 - `add_executable(<executable-name> <entry-cpp>)`
