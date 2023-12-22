@@ -58,4 +58,7 @@ _deps
 ### Visual Studio Code ###
 .vscode
 
+### Build directories ###
+/[Bb]uild*/
+
 # End of https://www.toptal.com/developers/gitignore/api/cmake,c++
