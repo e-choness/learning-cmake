@@ -2,9 +2,19 @@
 
 ## :pencil2: Notes
 
-- This example is done mainly using CMake command lines and [Visual Studio Code](https://code.visualstudio.com/) with `CMake Tools` and related plugins.
+- This example is done mainly using CMake command lines and [Visual Studio Code](https://code.visualstudio.com/) with `CMake Tools`/`CMake Tools Extension` and related plugins.
 - [CLion](https://www.jetbrains.com/clion/) also does a great job supporting complete configuration and CMake automation.
 - [Visual Studio](https://visualstudio.microsoft.com/) also supports CMake, it's just not my first choice of IDE.
+
+## 🐭 Minimum Setup
+
+- `cmake_minimum_required` is the bare minimum required statement for specifying the cmake version the project is build on.
+- `project(${PROJECT_NAME} VERSION x.x.x)` is giving a project a name and version to build. `VERSION` has to be upper case, CMake is case sensitive on that regard.
+
+## 🐱 C++ Standard Declarations
+
+- `set(CMAKE_CXX_STANDARD xx)` is to set C++ standard to compile, xx can be 11, 14, 17, 20 and 23. The command is using `CXX` instead of `C++` or `CPP` is because this is easier to parse for the OS file system. I don't know how it came to be but it's a thing that people just generally agreed on.
+- `set(CMAKE_CXX_STANDARD_REQUIRED True/False)` is line is not required, but if the project is heavily relying on a specific C++ standard version, forcefully set a C++ standard might not be a bad idea.
 
 ## :+1: Add Executable
 
