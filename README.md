@@ -26,9 +26,13 @@
 - After `<library-name>` we can declare `STATIC`, `SHARED` or `MODULE` as library property. `STATIC` is built by default.
 - `target_link_library(<executable-name> <library-name>)` will link the library to the executable. Before `<library-name>` it can be declared as `PUBLIC` OR `PRIVATE`.
 
-## Add Subdirectory
+## :bookmark_tabs: Add Subdirectory
 
-One thing that came up with `add_subdirectory` to organize the projects is always trying to include headers. `target_include_directory` can help locate library header files. VS Code still mark inline errors for including headers. If CMake compiles and builds the project without problem, it's safe to ignore IDE errors.
+- One thing that came up with `add_subdirectory` to organize the projects is always trying to include headers. `target_include_directory` can help locate library header files. VS Code still mark inline errors for including headers. If CMake compiles and builds the project without problem, it's safe to ignore IDE errors.
+
+- `target_compile_definition` is a way to specify the library properties such as library version and others to help define specific complication actions. The definition can be captured in the C++ program as well. Setting it to `PUBLIC`, the definitions will be accessible to source code outside of the library, `PRIVATE` on the other hand, will not propagate to code inside the library. `INTERFACE` does the exact opposite to `PRIVATE`. These are powerful features of CMake, will help a great deal for build automation.
+
+- Don't set compile definitions to something like `1.0.0`, it does not parse well in code.
 
 ## :memo: Useful Commands
 

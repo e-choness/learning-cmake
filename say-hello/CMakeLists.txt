@@ -8,3 +8,6 @@ ${HELLO_SOURCE_DIR}/hello/hello.cpp)
 target_include_directories(say-hello 
 PUBLIC 
 ${HELLO_SOURCE_DIR})
+
+# Set proprocessor definition to specified version.
+target_compile_definitions(say-hello PUBLIC SAY_HELLO_VERSION=1)
