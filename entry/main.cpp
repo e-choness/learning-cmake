@@ -5,7 +5,7 @@ int main(int argc, char **argv){
 
     auto hello = Hello();
     
-    hello.SetGreetings("Hello, CMake from library!\n");
+    hello.SetGreetings("Hello, CMake from library in subdirectory!\n");
     std::cout << hello.GetGreetings();
 
     // Get command line arguments from main entry args.

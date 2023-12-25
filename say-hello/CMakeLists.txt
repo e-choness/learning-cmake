@@ -1,7 +1,10 @@
+set(HELLO_SOURCE_DIR 
+${CMAKE_CURRENT_SOURCE_DIR}/src)
+
 add_library(say-hello 
-src/hello/hello.hpp
-src/hello/hello.cpp)
+${HELLO_SOURCE_DIR}/hello/hello.hpp
+${HELLO_SOURCE_DIR}/hello/hello.cpp)
 
 target_include_directories(say-hello 
 PUBLIC 
-"${CMAKE_CURRENT_SOURCE_DIR}/src")
+${HELLO_SOURCE_DIR})

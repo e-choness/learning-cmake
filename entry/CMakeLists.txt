@@ -1,2 +1,4 @@
 add_executable(${PROJECT_NAME} main.cpp)
-target_link_libraries(${PROJECT_NAME} PRIVATE say-hello)
+
+target_link_libraries(${PROJECT_NAME} 
+PUBLIC say-hello)
