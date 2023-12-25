@@ -34,6 +34,13 @@
 
 - Don't set compile definitions to something like `1.0.0`, it does not parse well in code.
 
+## :wrench: Scripting in CMake
+
+- Literally every variable data in CMake is a string, with the simplicity of scripting it might take more effort for developers to process.
+- `command_name(<list of arguments>)` outputs commands that feeds into the executable.
+- `message()` outputs the contents to the console when configuring and compiling in CMake.
+- Variables are interpreted using `${}` syntax.
+
 ## :memo: Useful Commands
 
 ### :bell: Basics
@@ -52,3 +59,10 @@
 | `ls ENV:` | Output environmental variables. Useful when looking for compiler settings and include paths without using any IDEs.  |
 | `echo $env:INCLUDE` | Output include paths. |
 | `cmake -G Ninja -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl <source-directory>` | Build the program with Ninja generator and clang as compiler. |
+
+## :fork_and_knife: VS Code Shortcuts
+
+| Shortcut | Description |
+|---|---|
+| `Ctrl+Shift+P`| Summon command palette, where commands like `cmake:configure` can be called here. |
+| `Ctrl+P` | Quick search on the files in the project. |
