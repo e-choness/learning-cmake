@@ -40,6 +40,10 @@
 - `command_name(<list of arguments>)` outputs commands that feeds into the executable.
 - `message()` outputs the contents to the console when configuring and compiling in CMake.
 - Variables are interpreted using `${}` syntax.
+- `if()` `endif()` is paird statements for conditional control flow for scripting cmake. The conditions inside `if()` resulted in `TRUE`, it will go on with the operations inside the if statement.
+- `EQUAL` compares numerical values, `STREQUAL` compares string values.
+- `while()` `endwhile()` is one type of loop that runs as long as the condition in `while()` is met.
+- `foreach()` `endforeach()` enumerates from a numerical range or a string array.
 
 ## :memo: Useful Commands
 
