@@ -77,3 +77,74 @@ message(STATUS "Both uppper and lower cap range example:")
 foreach(INDEX RANGE 10 20)
     message(STATUS "${INDEX}")
 endforeach()
+
+# Arrays and how CMake expands them using ""
+set(ARRAY 1 2 3 4)
+# Using "${}", it will parse each element and concat them into a single string with ;
+# Arrays 1;2;3;4
+message(STATUS "Arrays ${ARRAY}")
+# With out "", it will expand each element as it's own variable
+# Arrays1234
+message(STATUS "Arrays" ${ARRAY})
+
+# Set property for variables
+set(TARGET DIRECTORY "${PROJECT_SOURCE_DIR}")
+set_property(${TARGET} PROPERTY FOO "${ARRAY}")
+
+get_property(FOO_VALUE ${TARGET} PROPERTY FOO)
+
+# The value of FOO is 1;2;3;4
+message(STATUS "The value of FOO is ${FOO_VALUE}")
+
+# CMake functions
+function(do_something)
+    message(STATUS "This function is doing something.")
+endfunction()
+
+# do_something is called four times
+do_something()
+do_something()
+do_something()
+do_something()
+
+# CMake functions with arguments
+function(do_another_thing args args2)
+    message(STATUS "This function is having ${args}")
+    message(STATUS "This function is having " ${args2})
+endfunction()
+
+# This function is having ARRAY
+# If do_another_thing is having more than one arguments, the compiler will complain.
+# do_another_thing(ARRAY)
+
+# This function is having 1
+do_another_thing(${ARRAY})
+
+# CMake function take dynamic lists of arguments
+function(multi_args_func arg1 arg2 arg3)
+    # Interstingly, the elements in ARGN here are the ones NOT in passed arguments
+    # ARGN represents the arguments that are not bound to the function declared arguments
+    foreach(ARG IN LISTS ARGN)
+        message(STATUS "Elements in ARGN ${ARG}")
+    endforeach()
+    foreach(ARG IN LISTS ARGV)
+        message(STATUS "Elements in ARCV ${ARG}")
+    endforeach()
+endfunction()
+
+# The compiler will complain even ARRAY is parsed using ${}
+# muilt_args_func(${ARRAY})
+multi_args_func(1 2 3 4 5 6 7 8 9)
+
+# CMake variable scope
+set(MEOW_STRING Meow)
+
+function(say_meow)
+    message(STATUS "The cat is saying ${MEOW_STRING} from top.")
+    message(STATUS "The cat is saying ${ANOTHER_MEOW} from bottom.")
+endfunction()
+
+set(ANOTHER_MEOW MeowMeow)
+
+# Global variables are evaluated right before the function is called.
+say_meow()
