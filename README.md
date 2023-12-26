@@ -64,12 +64,12 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 
 ## :capital_abcd: Variables and Scope
 
-- Functions are explained in [:1234: Functions](#functions) section.
+- Functions are explained in #:1234: Functions section.
 - Varaibles declared inside a function scope without `PARENT_SCOPE` property does not change the variable value outside of the function.
 - Variables declared after the definition of the function can also be recognized by the function as long as it is declared before the function is called.
 - Variable as arguments needs double quotes wrapped with double dereferencing to get the value, like `"${${VAR}}"`.
 
-## :1234: Functions {#functions}
+## :1234: Functions
 
 - `function()` `endfunction()` is used to define a fuction. The first argument is always the name of the function. The following arguments are the list of arguments passed in.
 - `ARGN` captures all the arguments passed in when the function is called.
