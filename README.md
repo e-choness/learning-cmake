@@ -6,6 +6,16 @@
 - [CLion](https://www.jetbrains.com/clion/) also does a great job supporting complete configuration and CMake automation.
 - [Visual Studio](https://visualstudio.microsoft.com/) also supports CMake, it's just not my first choice of IDE.
 
+## :fork_and_knife: VS Code Shortcuts
+
+Before going for basic setups, here are some VS Code shortcuts that are good to know.
+
+| Shortcut | Description |
+|---|---|
+| `F7` | Build the project. |
+| `Ctrl+Shift+P`| Summon command palette, where commands like `cmake:configure` can be called here. |
+| `Ctrl+P` | Quick search on the files in the project. |
+
 ## 🐭 Minimum Setup
 
 - `cmake_minimum_required` is the bare minimum required statement for specifying the cmake version the project is build on.
@@ -45,6 +55,17 @@
 - `while()` `endwhile()` is one type of loop that runs as long as the condition in `while()` is met.
 - `foreach()` `endforeach()` enumerates from a numerical range or a string array.
 
+## :trumpet: Arrays
+
+- Declaring a variable with a set of values using `set()`.
+- Output the array values using `${}` it expands each element as a variable of its own.
+- Output the array values usign `"${}"` it concat each element into a single string, separated by semi-colon.
+- When packing several variables inside meta-variable it would be best to dereference without double quotes, such that it expands each variable properly.
+
+## :capital_abcd: Variables and Scope
+
+## :1234: Functions
+
 ## :memo: Useful Commands
 
 ### :bell: Basics
@@ -63,10 +84,3 @@
 | `ls ENV:` | Output environmental variables. Useful when looking for compiler settings and include paths without using any IDEs.  |
 | `echo $env:INCLUDE` | Output include paths. |
 | `cmake -G Ninja -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl <source-directory>` | Build the program with Ninja generator and clang as compiler. |
-
-## :fork_and_knife: VS Code Shortcuts
-
-| Shortcut | Description |
-|---|---|
-| `Ctrl+Shift+P`| Summon command palette, where commands like `cmake:configure` can be called here. |
-| `Ctrl+P` | Quick search on the files in the project. |
