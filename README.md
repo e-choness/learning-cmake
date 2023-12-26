@@ -23,7 +23,7 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 
 ## 🐱 C++ Standard Declarations
 
-- `set(CMAKE_CXX_STANDARD xx)` is to set C++ standard to compile, xx can be 11, 14, 17, 20 and 23. The command is using `CXX` instead of `C++` or `CPP` is because this is easier to parse for the OS file system. I don't know how it came to be but it's a thing that people just generally agreed on.
+- `set(CMAKE_CXX_STANDARD xx)` is to set C++ standard to compile, `xx` can be 11, 14, 17, 20 and 23. The command is using `CXX` instead of `C++` or `CPP` is because this is easier to parse for the OS file system. I don't know how it came to be but it's a thing that people just generally agreed on.
 - `set(CMAKE_CXX_STANDARD_REQUIRED True/False)` is line is not required, but if the project is heavily relying on a specific C++ standard version, forcefully set a C++ standard might not be a bad idea.
 
 ## :+1: Add Executable
@@ -64,7 +64,17 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 
 ## :capital_abcd: Variables and Scope
 
-## :1234: Functions
+- Functions are explained in [:1234: Functions](#functions) section.
+- Varaibles declared inside a function scope without `PARENT_SCOPE` property does not change the variable value outside of the function.
+- Variables declared after the definition of the function can also be recognized by the function as long as it is declared before the function is called.
+- Variable as arguments needs double quotes wrapped with double dereferencing to get the value, like `"${${VAR}}"`.
+
+## :1234: Functions {#functions}
+
+- `function()` `endfunction()` is used to define a fuction. The first argument is always the name of the function. The following arguments are the list of arguments passed in.
+- `ARGN` captures all the arguments passed in when the function is called.
+- `ARGV` captures the arguments passed in but outside the range of defined arguments.
+- To return a value, set a global variable with the updated value and set its property to `PARENT_SCOPE`. An example `set("${GLOBAL_VALUE}" "${UPDATED_VALUE}" PARENT_SCOPE)`. Make sure to dereference them in `set()` command.
 
 ## :memo: Useful Commands
 
