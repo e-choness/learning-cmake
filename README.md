@@ -6,6 +6,16 @@
 - [CLion](https://www.jetbrains.com/clion/) also does a great job supporting complete configuration and CMake automation.
 - [Visual Studio](https://visualstudio.microsoft.com/) also supports CMake, it's just not my first choice of IDE.
 
+## :fork_and_knife: VS Code Shortcuts
+
+Before going for basic setups, here are some VS Code shortcuts that are good to know.
+
+| Shortcut | Description |
+|---|---|
+| `F7` | Build the project. |
+| `Ctrl+Shift+P`| Summon command palette, where commands like `cmake:configure` can be called here. |
+| `Ctrl+P` | Quick search on the files in the project. |
+
 ## 🐭 Minimum Setup
 
 - `cmake_minimum_required` is the bare minimum required statement for specifying the cmake version the project is build on.
@@ -13,7 +23,7 @@
 
 ## 🐱 C++ Standard Declarations
 
-- `set(CMAKE_CXX_STANDARD xx)` is to set C++ standard to compile, xx can be 11, 14, 17, 20 and 23. The command is using `CXX` instead of `C++` or `CPP` is because this is easier to parse for the OS file system. I don't know how it came to be but it's a thing that people just generally agreed on.
+- `set(CMAKE_CXX_STANDARD xx)` is to set C++ standard to compile, `xx` can be 11, 14, 17, 20 and 23. The command is using `CXX` instead of `C++` or `CPP` is because this is easier to parse for the OS file system. I don't know how it came to be but it's a thing that people just generally agreed on.
 - `set(CMAKE_CXX_STANDARD_REQUIRED True/False)` is line is not required, but if the project is heavily relying on a specific C++ standard version, forcefully set a C++ standard might not be a bad idea.
 
 ## :+1: Add Executable
@@ -45,6 +55,27 @@
 - `while()` `endwhile()` is one type of loop that runs as long as the condition in `while()` is met.
 - `foreach()` `endforeach()` enumerates from a numerical range or a string array.
 
+## :trumpet: Arrays
+
+- Declaring a variable with a set of values using `set()`.
+- Output the array values using `${}` it expands each element as a variable of its own.
+- Output the array values usign `"${}"` it concat each element into a single string, separated by semi-colon.
+- When packing several variables inside meta-variable it would be best to dereference without double quotes, such that it expands each variable properly.
+
+## :capital_abcd: Variables and Scope
+
+- Functions are explained in [:1234: Functions](#functions) section.
+- Varaibles declared inside a function scope without `PARENT_SCOPE` property does not change the variable value outside of the function.
+- Variables declared after the definition of the function can also be recognized by the function as long as it is declared before the function is called.
+- Variable as arguments needs double quotes wrapped with double dereferencing to get the value, like `"${${VAR}}"`.
+
+## :1234: Functions {#functions}
+
+- `function()` `endfunction()` is used to define a fuction. The first argument is always the name of the function. The following arguments are the list of arguments passed in.
+- `ARGN` captures all the arguments passed in when the function is called.
+- `ARGV` captures the arguments passed in but outside the range of defined arguments.
+- To return a value, set a global variable with the updated value and set its property to `PARENT_SCOPE`. An example `set("${GLOBAL_VALUE}" "${UPDATED_VALUE}" PARENT_SCOPE)`. Make sure to dereference them in `set()` command.
+
 ## :memo: Useful Commands
 
 ### :bell: Basics
@@ -63,10 +94,3 @@
 | `ls ENV:` | Output environmental variables. Useful when looking for compiler settings and include paths without using any IDEs.  |
 | `echo $env:INCLUDE` | Output include paths. |
 | `cmake -G Ninja -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl <source-directory>` | Build the program with Ninja generator and clang as compiler. |
-
-## :fork_and_knife: VS Code Shortcuts
-
-| Shortcut | Description |
-|---|---|
-| `Ctrl+Shift+P`| Summon command palette, where commands like `cmake:configure` can be called here. |
-| `Ctrl+P` | Quick search on the files in the project. |
