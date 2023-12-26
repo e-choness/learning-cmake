@@ -76,6 +76,14 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 - `ARGV` captures the arguments passed in but outside the range of defined arguments.
 - To return a value, set a global variable with the updated value and set its property to `PARENT_SCOPE`. An example `set("${GLOBAL_VALUE}" "${UPDATED_VALUE}" PARENT_SCOPE)`. Make sure to dereference them in `set()` command.
 
+## :first_quarter_moon: CTest
+
+CTest is a key tool to add test driven system within the CMake build system. Both White- and black box testing are supported.
+
+- CMake facilitates testing source code through commands and `CTest` executable.
+- `add_test` generates a test executable based on a source code executable.
+- Since variable values are strings, test actual result property can be set as `PASS_REGULAR_EXPRESSION`, followed by raw strings such as "^Hello, world!".
+
 ## :memo: Useful Commands
 
 ### :bell: Basics
