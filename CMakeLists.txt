@@ -138,13 +138,42 @@ multi_args_func(1 2 3 4 5 6 7 8 9)
 
 # CMake variable scope
 set(MEOW_STRING Meow)
+set(MEOW_GLOBAL MEOWWWW)
+message(STATUS "The cat is saying ${MEOW_GLOBAL} before calling.")
 
 function(say_meow)
     message(STATUS "The cat is saying ${MEOW_STRING} from top.")
     message(STATUS "The cat is saying ${ANOTHER_MEOW} from bottom.")
+    
+    set(MEOW_STRING meowww)
+    message(STATUS "The cat is saying ${MEOW_STRING} from the inside.")
+    
+    # PARENT_SCOPE is used speficically within the function to mark the variable as global scope.
+    set(MEOW_GLOBAL MEOW PARENT_SCOPE)
+    message(STATUS "The cat is saying ${MEOW_GLOBAL} from the inside")
+
 endfunction()
 
 set(ANOTHER_MEOW MeowMeow)
 
 # Global variables are evaluated right before the function is called.
 say_meow()
+
+message(STATUS "The cat is saying ${MEOW_GLOBAL} after calling.")
+
+# MEOW_STRING is changed inside the function but will be reset after the function is returned.
+message(STATUS "The cat is saying ${MEOW_STRING} from the outside.")
+
+# A function that returns value
+
+function(increment VAR)
+    # To get the actual value of the passed argument it needs double dereferencing.
+    message(STATUS "The value before increment is ${${VAR}}")
+    # Double dereferencing is also needed here for mathematic operations.
+    math(EXPR NEW_VAR "${${VAR}} + 1")
+    # The variable declared using set or math does not need double dereferencing.
+    message(STATUS "The value after increment is ${NEW_VAR}")
+endfunction()
+
+set(VALUE 10)
+increment(VALUE)
