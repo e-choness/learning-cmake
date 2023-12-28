@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_subdirectory(say-hello)
 add_subdirectory(entry)
+add_subdirectory(cmrc)
 
 # Basic conditions
 message(STATUS "Conditions example.")
