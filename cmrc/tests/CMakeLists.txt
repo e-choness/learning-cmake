@@ -3,7 +3,7 @@
 function(cmrc_add_test)
     # Set three variables named OPTIONS, ARGS AND LIST_ARGS, no values specified.
     set(OPTIONS)
-    set(ARGS NAME SOURCE RESOURCE REGEX WHENCE)
+    set(ARGS NAME SOURCE RESOURCE REGEX WHENCE PREFIX)
     set(LIST_ARGS)
     cmake_parse_arguments(
         # PARSE_ARGV indicates how many arguements to skip, in this case none are skipped.
@@ -34,6 +34,7 @@ function(cmrc_add_test)
         NAMESPACE ${test_NAME}
         ${test_RESOURCE}
         WHENCE "${test_WHENCE}"
+        PREFIX "${test_PREFIX}"
     )
 
     # Add generated tests to executable
@@ -52,11 +53,20 @@ cmrc_add_test(
 )
 
     
-# # Whence test using the function
+# Whence test using the function
 cmrc_add_test(
     NAME whence
     SOURCE whence.cpp
     RESOURCE subdir_a/subdir_b/file_a.txt
     REGEX "^I am a file!"
     WHENCE subdir_a
+)
+
+# Prefix test using the function
+cmrc_add_test(
+    NAME prefix
+    SOURCE prefix.cpp
+    RESOURCE hello.txt
+    PREFIX some-prefix
+    REGEX "^Hello, world!"
 )
