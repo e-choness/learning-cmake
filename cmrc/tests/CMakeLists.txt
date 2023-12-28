@@ -27,6 +27,19 @@ function(cmrc_add_test)
     message(STATUS "ARGS SOURCE: ${test_SOURCE}")
     message(STATUS "ARGS RESOURCE: ${test_RESOURCE}")
     message(STATUS "ARGS REGEX: ${test_REGEX}")
+
+    # Now we can use these arugments to actually generate tests
+    cmrc_add_resource_library(
+        rc_${test_NAME}
+        NAMESPACE ${test_NAME}
+        ${test_RESOURCE}
+        WHENCE "${test_WHENCE}"
+    )
+
+    # Add generated tests to executable
+    add_executable("${test_NAME}" "${test_SOURCE}")
+    target_link_libraries("${test_NAME}" PRIVATE rc_${test_NAME})
+    add_test("${test_NAME}" "${test_NAME}")
     
 endfunction()
 
