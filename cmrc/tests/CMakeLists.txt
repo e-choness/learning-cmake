@@ -2,7 +2,7 @@
 # A function to generalize the steps would be a great way to make things simpler.
 function(cmrc_add_test)
     # Set three variables named OPTIONS, ARGS AND LIST_ARGS, no values specified.
-    set(OPTIONS)
+    set(OPTIONS WILL_FAIL)
     set(ARGS NAME SOURCE REGEX WHENCE PREFIX)
     set(LIST_ARGS RESOURCES TEST_ARGV)
     cmake_parse_arguments(
@@ -25,8 +25,9 @@ function(cmrc_add_test)
     # CMake parse arguments using prefix with argument name
     message(STATUS "ARGS NAME: ${test_NAME}")
     message(STATUS "ARGS SOURCE: ${test_SOURCE}")
-    message(STATUS "ARGS RESOURCES: ${test_RESOURCES}")
+    message(STATUS "LIST_ARGS RESOURCES: ${test_RESOURCES}")
     message(STATUS "ARGS REGEX: ${test_REGEX}")
+    message(STATUS "OPTIONS: ${test_WILL_FAIL}")
 
     # Now we can use these arugments to actually generate tests
     cmrc_add_resource_library(
@@ -43,6 +44,18 @@ function(cmrc_add_test)
     # test_TEST_ARGV needs to be expanded so no double quotes here.
     add_test("${test_NAME}" "${test_NAME}" ${test_TEST_ARGV})
     
+    set_property(
+        TEST "${test_NAME}"
+        PROPERTY PASS_REGULAR_EXPRESSION
+        "${test_PASS_REGEX}"
+    )
+    
+    set_property(
+        TEST "${test_NAME}"
+        PROPERTY WILL_FAIL
+        "${test_WILL_FAIL}"
+    )
+
 endfunction()
 
 # Simple test
@@ -52,7 +65,6 @@ cmrc_add_test(
     RESOURCES hello.txt
     REGEX "^Hello, world!"
 )
-
     
 # Whence test
 cmrc_add_test(
@@ -98,4 +110,10 @@ cmrc_add_test(
         subdir_a/subdir_b/file_a.txt
         subdir_a/subdir_b/file_b.txt
     REGEX "^file_a.txt\nfile_b.txt\n$"
+)
+
+cmrc_add_test(
+    NAME enoent
+    SOURCE enoent.cpp
+    WILL_FAIL
 )
