@@ -76,6 +76,15 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 - `ARGV` captures the arguments passed in but outside the range of defined arguments.
 - To return a value, set a global variable with the updated value and set its property to `PARENT_SCOPE`. An example `set("${GLOBAL_VALUE}" "${UPDATED_VALUE}" PARENT_SCOPE)`. Make sure to dereference them in `set()` command.
 
+## CMake Arguments parsing
+
+It would be confusing if the relationship between the declared arguments are unclear.
+
+- `cmake_parse_arguments()` captures arguments declared by `set()`.
+- `<prefix>_UNPARSED_ARGUMENTS` captures obviously, unparsed arguments. Can be put into a list using `foreach(args IN LISTS <prefix>_UNPARSED_ARGUMENTS)` to output each of them.
+- One advantage of specifying arguments is that the function can dynamically take arguments without introducing build errors if unsufficiant arguments are passed in.
+- Put `WARNING` in `message()` can output warnings instead of plain debug messages.
+
 ## :first_quarter_moon: CTest
 
 CTest is a key tool to add test driven system within the CMake build system. Both White- and black box testing are supported.
@@ -83,6 +92,7 @@ CTest is a key tool to add test driven system within the CMake build system. Bot
 - CMake facilitates testing source code through commands and `CTest` executable.
 - `add_test` generates a test executable based on a source code executable.
 - Since variable values are strings, test actual result property can be set as `PASS_REGULAR_EXPRESSION`, followed by raw strings such as "^Hello, world!".
+- It would be more robust to introduce functions to each unit test, less prone to typos and bugs.
 
 ## :memo: Useful Commands
 
@@ -102,3 +112,4 @@ CTest is a key tool to add test driven system within the CMake build system. Bot
 | `ls ENV:` | Output environmental variables. Useful when looking for compiler settings and include paths without using any IDEs.  |
 | `echo $env:INCLUDE` | Output include paths. |
 | `cmake -G Ninja -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl <source-directory>` | Build the program with Ninja generator and clang as compiler. |
+| `cmake <source-directory>`| Generate or regenerate solution for the project. |
