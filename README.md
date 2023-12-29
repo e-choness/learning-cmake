@@ -76,7 +76,7 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 - `ARGV` captures the arguments passed in but outside the range of defined arguments.
 - To return a value, set a global variable with the updated value and set its property to `PARENT_SCOPE`. An example `set("${GLOBAL_VALUE}" "${UPDATED_VALUE}" PARENT_SCOPE)`. Make sure to dereference them in `set()` command.
 
-## CMake Arguments parsing
+## CMake Arguments Parsing
 
 It would be confusing if the relationship between the declared arguments are unclear.
 
@@ -84,6 +84,7 @@ It would be confusing if the relationship between the declared arguments are unc
 - `<prefix>_UNPARSED_ARGUMENTS` captures obviously, unparsed arguments. Can be put into a list using `foreach(args IN LISTS <prefix>_UNPARSED_ARGUMENTS)` to output each of them.
 - One advantage of specifying arguments is that the function can dynamically take arguments without introducing build errors if unsufficiant arguments are passed in.
 - Put `WARNING` in `message()` can output warnings instead of plain debug messages.
+- Using `if(DEFINED VARIABLE)` where `VARIABLE` is a parsed variable. When it is passed when the function is called, the steps within the directive will execute.
 
 ## :first_quarter_moon: CTest
 
