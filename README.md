@@ -55,6 +55,15 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 - `while()` `endwhile()` is one type of loop that runs as long as the condition in `while()` is met.
 - `foreach()` `endforeach()` enumerates from a numerical range or a string array.
 
+## Independent CMake Scripts
+
+CMake can utilize files structures to facilitate readable code. A good use of CMake scripts would be beneficial to a project's build system.
+
+- CMake scripts are associated with files ended with `.cmake`.
+- To add functions or commands inside a CMake script, simply use the script path with `include()` command.
+- CMake scripts are like any other files in the project, use `file()` command to bundle any scripts into a path list. Then iterate through the list to include everything needed.
+- Each `CMakeLists.txt` will execute in parallel. Take note that when iterating through a script list, it might not be included when the `CMakeLists.txt` beneath the hirarchy. It will cause dependency problem, it might be safe to re-include dependent scripts.
+
 ## :trumpet: Arrays
 
 - Declaring a variable with a set of values using `set()`.
