@@ -28,7 +28,7 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 
 ## :+1: Add Executable
 
-- `add_executable(<executable-name> <entry-cpp>)`
+- `add_executable(<executable-name> <entry-cpp>)` adds the sources code and tell CMake to compile it into an executable.
 
 ## :card_index: Add Library
 
@@ -42,6 +42,8 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 
 - `target_compile_definition` is a way to specify the library properties such as library version and others to help define specific complication actions. The definition can be captured in the C++ program as well. Setting it to `PUBLIC`, the definitions will be accessible to source code outside of the library, `PRIVATE` on the other hand, will not propagate to code inside the library. `INTERFACE` does the exact opposite to `PRIVATE`. These are powerful features of CMake, will help a great deal for build automation.
 
+- `add_subdirectory()` accepts a second argument stating a newly named directory dedicated to the subdirectory in the build folder.
+
 - Don't set compile definitions to something like `1.0.0`, it does not parse well in code.
 
 ## :wrench: Scripting in CMake
@@ -54,6 +56,16 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 - `EQUAL` compares numerical values, `STREQUAL` compares string values.
 - `while()` `endwhile()` is one type of loop that runs as long as the condition in `while()` is met.
 - `foreach()` `endforeach()` enumerates from a numerical range or a string array.
+
+## :mag: Independent CMake Scripts
+
+CMake can utilize files structures to facilitate readable code. A good use of CMake scripts would be beneficial to a project's build system.
+
+- CMake scripts are associated with files ended with `.cmake`.
+- To add functions or commands inside a CMake script, simply use the script path with `include()` command.
+- CMake scripts are like any other files in the project, use `file()` command to bundle any scripts into a path list. Then iterate through the list to include everything needed.
+- Each `CMakeLists.txt` will execute in parallel. Take note that when iterating through a script list, it might not be included when the `CMakeLists.txt` beneath the hirarchy. It will cause dependency problem, it might be safe to re-include dependent scripts.
+- When evaluating a script using `cmake -P <cmake-script.cmake>`, the directory will output differently depending on whether it's in the source or binary directory.
 
 ## :trumpet: Arrays
 
@@ -76,7 +88,7 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 - `ARGV` captures the arguments passed in but outside the range of defined arguments.
 - To return a value, set a global variable with the updated value and set its property to `PARENT_SCOPE`. An example `set("${GLOBAL_VALUE}" "${UPDATED_VALUE}" PARENT_SCOPE)`. Make sure to dereference them in `set()` command.
 
-## CMake Arguments Parsing
+## :scissors: CMake Arguments Parsing
 
 It would be confusing if the relationship between the declared arguments are unclear.
 
@@ -114,3 +126,4 @@ CTest is a key tool to add test driven system within the CMake build system. Bot
 | `echo $env:INCLUDE` | Output include paths. |
 | `cmake -G Ninja -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl <source-directory>` | Build the program with Ninja generator and clang as compiler. |
 | `cmake <source-directory>`| Generate or regenerate solution for the project. |
+| `cmake -P <cmake-script.cmake>` | Evaluate the specified CMake script. It runs the scripts without having any `include()` commands from the other scripts.|
