@@ -44,11 +44,14 @@ function(cmrc_add_test)
     # test_TEST_ARGV needs to be expanded so no double quotes here.
     add_test("${test_NAME}" "${test_NAME}" ${test_TEST_ARGV})
     
-    set_property(
-        TEST "${test_NAME}"
-        PROPERTY PASS_REGULAR_EXPRESSION
-        "${test_PASS_REGEX}"
-    )
+    # Only this test when REGEX is defined
+    if(DEFINED REGEX)
+        set_property(
+            TEST "${test_NAME}"
+            PROPERTY PASS_REGULAR_EXPRESSION
+            "${test_PASS_REGEX}"
+        )
+    endif()
     
     set_property(
         TEST "${test_NAME}"
