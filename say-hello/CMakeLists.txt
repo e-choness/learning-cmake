@@ -1,5 +1,12 @@
+cmake_minimum_required(VERSION 3.20.0)
+project(HelloLibrary VERSION 1.0.0)
+
 set(HELLO_SOURCE_DIR 
 ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+include(${SCRIPTS_DIR}/PrintVariables.cmake)
+
+print_variables()
 
 add_library(say-hello 
 ${HELLO_SOURCE_DIR}/hello/hello.hpp
