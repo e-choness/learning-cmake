@@ -12,3 +12,5 @@ function(print_variables)
     message(STATUS "The current script directory is ${CMAKE_CURRENT_LIST_DIR}")
     message(STATUS "================================\n")
 endfunction()
+
+print_variables()

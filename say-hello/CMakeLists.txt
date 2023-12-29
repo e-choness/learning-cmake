@@ -4,8 +4,8 @@ project(HelloLibrary VERSION 1.0.0)
 set(HELLO_SOURCE_DIR 
 ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
+# Print out current project information
 include(${SCRIPTS_DIR}/PrintVariables.cmake)
-
 print_variables()
 
 add_library(say-hello 

@@ -3,6 +3,10 @@ project(CMakeRC VERSION 2.0.0)
 
 list(INSERT CMAKE_MODULE_PATH 0 "${PROJECT_SOURCE_DIR}/cmake")
 
+# Print current project information
+include(${SCRIPTS_DIR}/PrintVariables.cmake)
+print_variables()
+
 # Include the main module
 include(CMakeRC.cmake)
 
