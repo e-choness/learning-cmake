@@ -15,6 +15,7 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 | `F7` | Build the project. |
 | `Ctrl+Shift+P`| Summon command palette, where commands like `cmake:configure` can be called here. |
 | `Ctrl+P` | Quick search on the files in the project. |
+| `rm *`| Remove everything from a folder, it's useful when clearing build folder and experimenting on different generators |
 
 ## 🐭 Minimum Setup
 
@@ -25,6 +26,14 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 
 - `set(CMAKE_CXX_STANDARD xx)` is to set C++ standard to compile, `xx` can be 11, 14, 17, 20 and 23. The command is using `CXX` instead of `C++` or `CPP` is because this is easier to parse for the OS file system. I don't know how it came to be but it's a thing that people just generally agreed on.
 - `set(CMAKE_CXX_STANDARD_REQUIRED True/False)` is line is not required, but if the project is heavily relying on a specific C++ standard version, forcefully set a C++ standard might not be a bad idea.
+- `target_compile_features()` specifies compiler features when compiling a given target. Want to give compiler features C++20 standard, set `target_compile_features(${TARGET} PRIVATE cxx_std_20)`.
+
+## C and C++ Compilers adn Build Tools
+
+There are many compilers to chose from depending on the build environment.
+
+- For Windows MSVC compilers, provided those are installed through Visual Studio or Tools for Visual Studio, let CMake Tools configuration scan for them and it will show up in compiler settings.
+- clang can also be grabbed from Visual Studio Individual Components. CMake Tools scan will pair GNU CLI with Ninja. Ninja is a fast, light-weight and multi-platform build tool if the program is targeting for multiple platforms (Windows, Linux, Mac).
 
 ## :+1: Add Executable
 
