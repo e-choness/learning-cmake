@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.20.0)
 project(HelloLibrary VERSION 1.0.0)
 
+set(HELLO_LIB say-hello)
 set(HELLO_SOURCE_DIR 
 ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
@@ -8,13 +9,14 @@ ${CMAKE_CURRENT_SOURCE_DIR}/src)
 include(${SCRIPTS_DIR}/PrintVariables.cmake)
 print_variables()
 
-add_library(say-hello 
+add_library(${HELLO_LIB} 
 ${HELLO_SOURCE_DIR}/hello/hello.hpp
 ${HELLO_SOURCE_DIR}/hello/hello.cpp)
 
-target_include_directories(say-hello 
+target_include_directories(${HELLO_LIB} 
 PUBLIC 
 ${HELLO_SOURCE_DIR})
 
 # Set proprocessor definition to specified version.
-target_compile_definitions(say-hello PUBLIC SAY_HELLO_VERSION=1)
+target_compile_features(${HELLO_LIB} PRIVATE cxx_std_20)
+target_compile_definitions(${HELLO_LIB} PUBLIC SAY_HELLO_VERSION=1)
