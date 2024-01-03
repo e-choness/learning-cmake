@@ -15,7 +15,7 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 | `F7` | Build the project. |
 | `Ctrl+Shift+P`| Summon command palette, where commands like `cmake:configure` can be called here. |
 | `Ctrl+P` | Quick search on the files in the project. |
-| `rm *`| Remove everything from a folder, it's useful when clearing build folder and experimenting on different generators |
+
 
 ## 🐭 Minimum Setup
 
@@ -33,17 +33,13 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 There are many compilers to chose from depending on the build environment.
 
 - For Windows MSVC compilers, provided those are installed through Visual Studio or Tools for Visual Studio, let CMake Tools configuration scan for them and it will show up in compiler settings.
-- clang can also be grabbed from Visual Studio Individual Components. CMake Tools scan will pair GNU CLI with Ninja. Ninja is a fast, light-weight and multi-platform build tool if the program is targeting for multiple platforms (Windows, Linux, Mac).
+- Clang can also be grabbed from Visual Studio Individual Components. CMake Tools scan will pair GNU CLI with Ninja. Ninja is a fast, light-weight and multi-platform build tool if the program is targeting for multiple platforms (Windows, Linux, Mac).
+- `cmake -D CMAKE_CXX_COMPLIER=g++ <source-dir>` specifies compiler. If the compiler is not avaialbe, cmake will revert to default compiler setting.
+- MSVC generator is limited to it's own compiler. Ninja and MinGW can use g++ and Clang.
 
 ## :+1: Add Executable
 
 - `add_executable(<executable-name> <entry-cpp>)` adds the sources code and tell CMake to compile it into an executable.
-
-## :card_index: Add Library
-
-- `add_library(<library-name> <library-source> <library-header>)`.
-- After `<library-name>` we can declare `STATIC`, `SHARED` or `MODULE` as library property. `STATIC` is built by default.
-- `target_link_library(<executable-name> <library-name>)` will link the library to the executable. Before `<library-name>` it can be declared as `PUBLIC` OR `PRIVATE`.
 
 ## :bookmark_tabs: Add Subdirectory
 
@@ -54,6 +50,23 @@ There are many compilers to chose from depending on the build environment.
 - `add_subdirectory()` accepts a second argument stating a newly named directory dedicated to the subdirectory in the build folder.
 
 - Don't set compile definitions to something like `1.0.0`, it does not parse well in code.
+
+## :card_index: Add Library
+
+- `add_library(<library-name> <library-source> <library-header>)`.
+- After `<library-name>` we can declare `STATIC`, `SHARED` or `MODULE` as library property. `STATIC` is built by default.
+- `target_link_library(<executable-name> <library-name>)` will link the library to the executable. Before `<library-name>` it can be declared as `PUBLIC` OR `PRIVATE`.
+
+## Include Headers
+
+- `target_include_directories(<project> [accessibility] <header-directory>)` includes the headers.
+
+- The code below works but not recommended by official CMake practices.
+
+```cmake
+    file(GLOB SOURCE_FILES src/*.cpp)
+    add_executable(hello entry.cpp ${SOURCE_FILES})
+```
 
 ## :wrench: Scripting in CMake
 
@@ -133,6 +146,11 @@ CTest is a key tool to add test driven system within the CMake build system. Bot
 | `BUILD_SHARED_LIBS=TRUE` | Set building shared library by default. |
 | `ls ENV:` | Output environmental variables. Useful when looking for compiler settings and include paths without using any IDEs.  |
 | `echo $env:INCLUDE` | Output include paths. |
+| `rm *`| Remove everything from a folder, it's useful when clearing build folder and experimenting on different generators |
 | `cmake -G Ninja -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl <source-directory>` | Build the program with Ninja generator and clang as compiler. |
 | `cmake <source-directory>`| Generate or regenerate solution for the project. |
 | `cmake -P <cmake-script.cmake>` | Evaluate the specified CMake script. It runs the scripts without having any `include()` commands from the other scripts.|
+| `cmake --build . --target help` | List options for build target. |
+| `cmake --system-information <file.txt>` | List all cmake configurations in a txt file. |
+| `cmake -GNinja -D CMAKE_CXX_COMPILER=g++ <source-dir>` | Specifies compiler as g++ with Ninja, or Clang if using `clang++`. Alternatively, `CMAKE_CXX_COMPILER` can consume absolute path for the compiler. |
+| `cmake -G"Visual Studio 17 2022 -T"ClangCL" <source-dir>` | It's hard to find the compiler flag `ClangCL` here. |
