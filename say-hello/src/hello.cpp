@@ -1,4 +1,4 @@
-#include "hello/hello.hpp"
+#include "hello.hpp"
 #include <iostream>
 
 void Hello::SetGreetings(const std::string& greetings){
