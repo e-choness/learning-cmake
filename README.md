@@ -16,7 +16,6 @@ Before going for basic setups, here are some VS Code shortcuts that are good to 
 | `Ctrl+Shift+P`| Summon command palette, where commands like `cmake:configure` can be called here. |
 | `Ctrl+P` | Quick search on the files in the project. |
 
-
 ## 🐭 Minimum Setup
 
 - `cmake_minimum_required` is the bare minimum required statement for specifying the cmake version the project is build on.

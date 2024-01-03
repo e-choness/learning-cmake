@@ -3,8 +3,7 @@ project(HelloLibrary VERSION 1.0.0)
 
 # Set include and source paths
 set(HELLO_LIB say-hello)
-set(HELLO_SOURCE_DIR 
-${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(HELLO_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(HELLO_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # Print out current project information
@@ -17,9 +16,7 @@ ${HELLO_SOURCE_DIR}/hello.cpp
 ${HELLO_SOURCE_DIR}/log.cpp)
 
 # Add headers
-target_include_directories(${HELLO_LIB} 
-PUBLIC 
-${HELLO_INCLUDE_DIR})
+target_include_directories(${HELLO_LIB} PUBLIC ${HELLO_INCLUDE_DIR})
 
 # Set proprocessor definition to specified version.
 target_compile_features(${HELLO_LIB} PRIVATE cxx_std_20)
