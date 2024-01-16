@@ -24,6 +24,8 @@ target_include_directories(${HELLO_LIB} PUBLIC
 
 target_link_directories(${HELLO_LIB} PUBLIC ${GLFW_SRC_DIR})
 
+target_link_libraries(${HELLO_LIB} PUBLIC glfw)
+
 # Set proprocessor definition to specified version.
 target_compile_features(${HELLO_LIB} PRIVATE cxx_std_20)
 target_compile_definitions(${HELLO_LIB} PUBLIC SAY_HELLO_VERSION=1)
