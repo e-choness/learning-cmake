@@ -6,17 +6,23 @@ set(HELLO_LIB say-hello)
 set(HELLO_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(HELLO_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+set(GLFW_INCLUDE_DIR ../extern/glfw/include/GLFW)
+set(GLFW_SRC_DIR ../extern/glfw/src)
 # Print out current project information
 include(${SCRIPTS_DIR}/PrintVariables.cmake)
 print_variables()
 
 # Library
 add_library(${HELLO_LIB} 
-${HELLO_SOURCE_DIR}/hello.cpp
-${HELLO_SOURCE_DIR}/log.cpp)
+    ${HELLO_SOURCE_DIR}/hello.cpp
+    ${HELLO_SOURCE_DIR}/log.cpp)
 
 # Add headers
-target_include_directories(${HELLO_LIB} PUBLIC ${HELLO_INCLUDE_DIR})
+target_include_directories(${HELLO_LIB} PUBLIC 
+    ${HELLO_INCLUDE_DIR}
+    ${GLFW_INCLUDE_DIR})
+
+target_link_directories(${HELLO_LIB} PUBLIC ${GLFW_SRC_DIR})
 
 # Set proprocessor definition to specified version.
 target_compile_features(${HELLO_LIB} PRIVATE cxx_std_20)
