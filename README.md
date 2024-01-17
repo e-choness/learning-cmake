@@ -36,6 +36,19 @@ There are many compilers to chose from depending on the build environment.
 - `cmake -D CMAKE_CXX_COMPLIER=g++ <source-dir>` specifies compiler. If the compiler is not avaialbe, cmake will revert to default compiler setting.
 - MSVC generator is limited to it's own compiler. Ninja and MinGW can use g++ and Clang.
 
+## Project Versioning
+
+There are many ways to version a project. Two are demostrated in this project
+
+- `target_compile_definitions` is a way to specify the library properties such as library version and others to help define specific complication actions. The definition can be captured in the C++ program as well. Setting it to `PUBLIC`, the definitions will be accessible to source code outside of the library, `PRIVATE` on the other hand, will not propagate to code inside the library. `INTERFACE` does the exact opposite to `PRIVATE`. These are powerful features of CMake, will help a great deal for build automation.
+
+```cmake
+target_compile_definitions(${HELLO_LIB} PUBLIC SAY_HELLO_VERSION="1.1")
+# Note: if version formated 1.x.x, add double quotes to it.
+```
+
+- `configure_file(Config.h.in Config.h)` will take the contents inside `Config.h.hin` to generate a header file `Config.h`, and make sure to include the header's directory to the project. After cmake generate or configures the project files, the header can be included within declared scope.
+
 ## :+1: Add Executable
 
 - `add_executable(<executable-name> <entry-cpp>)` adds the sources code and tell CMake to compile it into an executable.
@@ -44,11 +57,7 @@ There are many compilers to chose from depending on the build environment.
 
 - One thing that came up with `add_subdirectory` to organize the projects is always trying to include headers. `target_include_directory` can help locate library header files. VS Code still mark inline errors for including headers. If CMake compiles and builds the project without problem, it's safe to ignore IDE errors.
 
-- `target_compile_definition` is a way to specify the library properties such as library version and others to help define specific complication actions. The definition can be captured in the C++ program as well. Setting it to `PUBLIC`, the definitions will be accessible to source code outside of the library, `PRIVATE` on the other hand, will not propagate to code inside the library. `INTERFACE` does the exact opposite to `PRIVATE`. These are powerful features of CMake, will help a great deal for build automation.
-
 - `add_subdirectory()` accepts a second argument stating a newly named directory dedicated to the subdirectory in the build folder.
-
-- Don't set compile definitions to something like `1.0.0`, it does not parse well in code.
 
 ## :card_index: Add Library
 
