@@ -12,6 +12,6 @@ enum LogType{
 
 class Log{
     public:
-        static void log_data(const std::string& message, LogType log_type);
-
+        static void logData(const std::string &message, LogType logType);
+        static void logData(const Entry& entry, LogType logType);
 };
