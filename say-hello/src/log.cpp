@@ -1,5 +1,4 @@
 #include "log.hpp"
-#include <iostream>
 
 void Log::log_data(const std::string& message, LogType log_type)
 {
@@ -19,3 +18,5 @@ void Log::log_data(const std::string& message, LogType log_type)
         break;
     }
 }
+
+
