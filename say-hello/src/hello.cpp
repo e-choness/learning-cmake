@@ -1,12 +1,15 @@
 #include "hello.hpp"
+#include "log.hpp"
+#include "Entry.hpp"
+#include <vector>
 #include <iostream>
 #include <glfw3.h>
 
-void Hello::SetGreetings(const std::string& greetings){
-    this->greetings = greetings;
+void Hello::setGreetings(const std::string& message){
+    this->greetings = message;
 }
 
-std::string Hello::GetGreetings() const{
+std::string Hello::getGreetings() const{
     std::cout << "Library version from Hello: " << SAY_HELLO_VERSION << "\n";
 
     // C++ 20 features
@@ -36,4 +39,15 @@ std::string Hello::GetGreetings() const{
     glfwTerminate();
 
     return greetings;
+}
+
+void Hello::showEntries() const {
+    std::vector<Entry> entries;
+    entries.push_back({"James Bond", 54543413});
+    entries.push_back({"Harry Potter", 188492053});
+
+    for(const auto& entry : entries){
+        Log::logData(entry, MESSAGE);
+    }
+
 }
