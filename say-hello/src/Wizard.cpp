@@ -1,6 +1,8 @@
 #include "Wizard.hpp"
 #include "Spells.hpp"
 #include "SpellJournal.hpp"
+#include <vector>
+#include <algorithm>
 #include <iostream>
 #include <tuple>
 
@@ -18,7 +20,7 @@ std::tuple<std::string, int> Wizard::read() {
     return std::make_tuple(word, power);
 }
 
-Spell* Wizard::decide(const std::string &spellWord, const int power) {
+Spell* Wizard::decide(const std::string &spellWord, int power) {
     Spell *spell;
     if(spellWord == "fire") spell = new Fireball(power);
     else if(spellWord == "frost") spell = new Frostbite(power);
@@ -42,13 +44,19 @@ void Wizard::counter(Spell *spell) {
 }
 
 void Wizard::compare(const std::string &spellName) {
-    int count = 0;
-    size_t pos;
-    for(char c: spellName){
-        while((pos = SpellJournal::mJournal.find_first_of(c))!= std::string::npos){
-            SpellJournal::mJournal.replace(pos, 1, "");
-            count++;
+    long long spellSize = spellName.length();
+    int journalSize = SpellJournal::mJournal.size();
+
+    std::vector<std::vector<int>> countTable(spellSize+1, std::vector<int>(journalSize+1, 0));
+    for(int i=1; i<=spellSize; ++i){
+        for(int j=1; j<=journalSize; ++j){
+            if(spellName[i-1] == SpellJournal::mJournal[j-1]){
+                countTable[i][j] = countTable[i-1][j-1] + 1;
+            }else{
+                countTable[i][j] = std::max(countTable[i-1][j], countTable[i][j-1]);
+            }
         }
     }
-    std::cout << count << "\n";
+
+    std::cout<< countTable[spellSize][journalSize]  << "\n";
 }
