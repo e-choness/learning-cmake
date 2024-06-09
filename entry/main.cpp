@@ -1,11 +1,13 @@
 #include "hello.hpp"
 #include "log.hpp"
 #include "BoxManipulator.hpp"
+#include "Stairs.hpp"
 #include "HtmlProvider.hpp"
 #include "BattleField.hpp"
 #include "HELLOConfig.h"
 
 int main(int argc, char **argv){
+    Stairs::show();
     BattleField::fight();
 
     BoxManipulator boxManipulator;
