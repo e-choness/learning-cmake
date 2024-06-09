@@ -1,10 +1,12 @@
 #include "hello.hpp"
 #include "log.hpp"
+#include "HtmlProvider.hpp"
 #include "HELLOConfig.h"
 
 int main(int argc, char **argv){
-    auto hello = Hello();
+    HtmlProvider::showResults();
 
+    auto hello = Hello();
     hello.showEntries();
 
     hello.setGreetings("Hello, CMake from library in subdirectory!\n");
@@ -13,9 +15,9 @@ int main(int argc, char **argv){
 
     std::cout << argv[0] << "hello_library version: " << HelloLibrary_VERSION_MAJOR << "." << HelloLibrary_VERSION_MINOR << "\n";
 
-    // Get command line arguments from main entry args.
+    // Get command mLine arguments from main entry args.
     if(argc > 1){
         const double inputValue = std::stod(argv[1]);
-        std::cout << "The first command line argument: " << inputValue << "\n";
+        std::cout << "The first command mLine argument: " << inputValue << "\n";
     }
 }
