@@ -1,9 +1,13 @@
 #include "hello.hpp"
 #include "log.hpp"
+#include "BoxManipulator.hpp"
 #include "HtmlProvider.hpp"
 #include "HELLOConfig.h"
 
 int main(int argc, char **argv){
+    BoxManipulator boxManipulator;
+    boxManipulator.show();
+
     HtmlProvider::showResults();
 
     auto hello = Hello();
