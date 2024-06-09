@@ -2,9 +2,12 @@
 #include "log.hpp"
 #include "BoxManipulator.hpp"
 #include "HtmlProvider.hpp"
+#include "BattleField.hpp"
 #include "HELLOConfig.h"
 
 int main(int argc, char **argv){
+    BattleField::fight();
+
     BoxManipulator boxManipulator;
     boxManipulator.show();
 

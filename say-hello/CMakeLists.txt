@@ -22,7 +22,10 @@ add_library(${HELLO_LIB}
         ${HELLO_SOURCE_DIR}/HtmlProvider.cpp
     ${HELLO_SOURCE_DIR}/QueryBuilder.cpp
     ${HELLO_SOURCE_DIR}/Box.cpp
-    ${HELLO_SOURCE_DIR}/BoxManipulator.cpp)
+    ${HELLO_SOURCE_DIR}/BoxManipulator.cpp
+    ${HELLO_SOURCE_DIR}/Spells.cpp
+    ${HELLO_SOURCE_DIR}/Wizard.cpp
+    ${HELLO_SOURCE_DIR}/BattleField.cpp)
 
 # Add headers
 target_include_directories(${HELLO_LIB} PUBLIC 
