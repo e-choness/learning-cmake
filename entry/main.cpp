@@ -2,11 +2,14 @@
 #include "log.hpp"
 #include "BoxManipulator.hpp"
 #include "Stairs.hpp"
+#include "ArrayHandler.hpp"
 #include "HtmlProvider.hpp"
 #include "BattleField.hpp"
 #include "HELLOConfig.h"
 
 int main(int argc, char **argv){
+    ArrayHandler::show();
+
     Stairs::show();
     BattleField::fight();
 
