@@ -27,7 +27,9 @@ add_library(${HELLO_LIB}
     ${HELLO_SOURCE_DIR}/Wizard.cpp
     ${HELLO_SOURCE_DIR}/BattleField.cpp
     ${HELLO_SOURCE_DIR}/Stairs.cpp
-    ${HELLO_SOURCE_DIR}/ArrayHandler.cpp)
+    ${HELLO_SOURCE_DIR}/ArrayHandler.cpp
+    ${HELLO_SOURCE_DIR}/Detector.cpp
+    ${HELLO_SOURCE_DIR}/Ancestor.cpp)
 
 # Add headers
 target_include_directories(${HELLO_LIB} PUBLIC 

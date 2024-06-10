@@ -3,11 +3,15 @@
 #include "BoxManipulator.hpp"
 #include "Stairs.hpp"
 #include "ArrayHandler.hpp"
+#include "Ancestor.hpp"
 #include "HtmlProvider.hpp"
 #include "BattleField.hpp"
 #include "HELLOConfig.h"
 
 int main(int argc, char **argv){
+    Ancestor ancestor;
+    ancestor.show();
+
     ArrayHandler::show();
 
     Stairs::show();
