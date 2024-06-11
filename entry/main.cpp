@@ -4,11 +4,17 @@
 #include "Stairs.hpp"
 #include "ArrayHandler.hpp"
 #include "Ancestor.hpp"
+#include "ForwardIter.hpp"
+#include "Exercise4.hpp"
 #include "HtmlProvider.hpp"
 #include "BattleField.hpp"
 #include "HELLOConfig.h"
 
 int main(int argc, char **argv){
+    runTests();
+
+    PrintSquareOf(5);
+
     Ancestor ancestor;
     ancestor.show();
 
