@@ -209,14 +209,14 @@ bool IsPlayerDetected(const Character& player, const std::vector<Enemy>& enemies
         // The goal is to get the dot product is greater than cos of the half detection angle
         // Which means the player is detected
         // Otherwise the player is not with in detection range
-
-        auto distance = (player.GetPosition() - enemy.GetPosition()).Magnitude();
+        auto distanceVector = player.GetPosition() - enemy.GetPosition();
+        auto distance = distanceVector.Magnitude();
 
         if (distance <= enemy.GetDetectionDistance()) {
-            (player.GetPosition() - enemy.GetPosition()).Normalize();
+            auto normalizedDisVec = (player.GetPosition() - enemy.GetPosition()).Normalize();
             Vec2 enemyHeadingVec(enemy.GetHeading());
 
-            float dotProduct = enemyHeadingVec.Dot(player.GetPosition() - enemy.GetPosition());
+            float dotProduct = enemyHeadingVec.Dot(normalizedDisVec);
             float cosHalfDetectionAngle = std::cos(enemy.GetDetectionAngle() / 2.0f);
 
             // Compare dot product with detection angle
@@ -307,7 +307,7 @@ bool Test4(){
             Enemy({0, -10}, DegToRad(-90), 15, DegToRad(60))
     };
 
-    const bool bExpectedResult = true;
+    const bool bExpectedResult = false;
 
     return IsPlayerDetected(player, enemies) == bExpectedResult;
 }
@@ -323,6 +323,7 @@ int main()
 	std::cout << "Test 1: " << (bTest1Passed ? "passed" : "failed") << "\n";
 	std::cout << "Test 2: " << (bTest2Passed ? "passed" : "failed") << "\n";
 	std::cout << "Test 3: " << (bTest3Passed ? "passed" : "failed") << "\n";
+    std::cout << "Test 4: " << (bTest4Passed ? "passed" : "failed") << "\n";
 	// [Output additional test results here.]
 
 	return 0;
