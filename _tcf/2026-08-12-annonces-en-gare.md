@@ -10,13 +10,12 @@ date: 2026-08-12
 summary: Repérer le quai, l'heure et le motif du retard sans relire.
 brief: Écoutez chaque annonce une seule fois et notez — quai, heure, motif.
 ---
-
-## Notes from attempt
+## Notes de la tentative
 
 Les liaisons m'ont piégé trois fois sur cinq : « quai onze » entendu comme « quai onze heures ». Le chiffre arrive toujours après le mot « voie » ou « quai », jamais avant.
 
 Deuxième passage sans les notes — quatre sur cinq. Je garde l'exercice pour la semaine prochaine.
 
-## Key takeaway
+## Points clés à retenir
 
 Focus on the sequence: the location marker always comes before the number. Liaisons are a distractor.
