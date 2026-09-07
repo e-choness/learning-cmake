@@ -4,7 +4,7 @@ title: "Réclamation de facture : les pièges de la lettre formelle"
 section: ee
 tache: Tâche 1
 level: B1
-topic: Écrivez une lettre formelle pour réclamer une erreur dans une facture
+topic: Lettre
 minutes: 30
 date: 2026-09-07
 summary: Analyse des outils linguistiques indispensables pour rédiger une lettre de réclamation formelle et sans faute en français (structures syntaxiques, connecteurs d'opposition et formules de politesse).
