@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('drill-search');
   const clearBtn = document.getElementById('clear-filters');
   const tacheSections = document.querySelectorAll('.tache-section');
+  const paginationEl = document.getElementById('tcf-pagination');
   let activeFilters = {};
+  let currentPage = 1;
+  let currentVisible = drillItems.slice();
 
   // Guard search and clear buttons
   if (!searchInput || !clearBtn) return;
@@ -103,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       this.parentElement.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
       this.classList.add('active');
+      currentPage = 1;
       filterDrills();
     });
   });
@@ -118,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         c.setAttribute('aria-pressed', String(c.dataset.section === activeFilters.section)));
 
       syncSectionFilterTags();
+      currentPage = 1;
       filterDrills();
     });
   });
@@ -129,13 +134,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  searchInput.addEventListener('input', filterDrills);
+  searchInput.addEventListener('input', () => {
+    currentPage = 1;
+    filterDrills();
+  });
+
   clearBtn.addEventListener('click', function() {
     activeFilters = {};
     searchInput.value = '';
     document.querySelectorAll('.filter-tags .tag').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('[data-value=""] .tag').forEach(t => t.classList.add('active'));
     document.querySelectorAll('.skill-card').forEach(c => c.setAttribute('aria-pressed', 'false'));
+    currentPage = 1;
     filterDrills();
   });
 
@@ -144,7 +154,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function filterDrills() {
     const query = fold(searchInput.value);
-    let visibleCount = 0;
 
     drillItems.forEach(item => {
       let show = true;
@@ -162,19 +171,47 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       item.classList.toggle('is-hidden', !show);
-      if (show) visibleCount++;
     });
+
+    currentVisible = drillItems.filter(i => !i.classList.contains('is-hidden'));
 
     // Update empty state (§5.7)
     const noResults = document.getElementById('no-results');
-    if (noResults) noResults.style.display = visibleCount ? 'none' : 'block';
+    if (noResults) noResults.style.display = currentVisible.length ? 'none' : 'block';
 
-    // Hide empty tâche sections
+    paginate();
+  }
+
+  function paginate() {
+    const total = currentVisible.length;
+    const totalPages = Math.max(1, Math.ceil(total / Pagination.PAGE_SIZE));
+    if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+    const start = (currentPage - 1) * Pagination.PAGE_SIZE;
+    const end = start + Pagination.PAGE_SIZE;
+
+    currentVisible.forEach((item, i) => {
+      item.classList.toggle('page-hidden', i < start || i >= end);
+    });
+
+    // Hide items that failed the filter (is-hidden already set); ensure no page-hidden on those
+    drillItems.filter(i => i.classList.contains('is-hidden')).forEach(i => {
+      i.classList.remove('page-hidden');
+    });
+
+    // Show/hide tâche sections based on combined filter + page visibility
     tacheSections.forEach(sec => {
       const any = Array.from(sec.querySelectorAll('.drill-item'))
-        .some(i => !i.classList.contains('is-hidden'));
+        .some(i => !i.classList.contains('is-hidden') && !i.classList.contains('page-hidden'));
       sec.style.display = any ? '' : 'none';
     });
+
+    if (paginationEl) {
+      Pagination.render(paginationEl, currentPage, totalPages, page => {
+        currentPage = page;
+        paginate();
+        paginationEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
   }
 
   // Reorder tâche sections to match tcf.yml order (§8.3)
@@ -195,6 +232,14 @@ document.addEventListener('DOMContentLoaded', function() {
     updateDoneBadge();
     updateProgressDisplays();
     updateTacheProgress();
+    if (paginationEl) {
+      const totalPages = Math.max(1, Math.ceil(currentVisible.length / Pagination.PAGE_SIZE));
+      Pagination.render(paginationEl, currentPage, totalPages, page => {
+        currentPage = page;
+        paginate();
+        paginationEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
   });
 
   // Listen for progress changes from drill page or other tabs (§3.4)
@@ -208,4 +253,5 @@ document.addEventListener('DOMContentLoaded', function() {
   updateDoneBadge();
   updateProgressDisplays();
   updateTacheProgress();
+  filterDrills();
 });

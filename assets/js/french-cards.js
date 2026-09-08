@@ -1,7 +1,10 @@
 // French flip cards - flip on click, drag to throw
 document.addEventListener('DOMContentLoaded', function() {
   const cards = document.querySelectorAll('.flip-card');
+  const paginationEl = document.getElementById('french-pagination');
   let activeFilters = { category: '', level: '' };
+  let currentPage = 1;
+  let currentVisible = Array.from(cards);
 
   // Category and level filtering (§9.2)
   document.querySelectorAll('[data-filter="category"] .tag').forEach(button => {
@@ -9,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
       activeFilters.category = this.dataset.category || '';
       document.querySelectorAll('[data-filter="category"] .tag').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
+      currentPage = 1;
       applyFilters();
     });
   });
@@ -18,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
       activeFilters.level = this.dataset.level || '';
       document.querySelectorAll('[data-filter="level"] .tag').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
+      currentPage = 1;
       applyFilters();
     });
   });
@@ -29,9 +34,30 @@ document.addEventListener('DOMContentLoaded', function() {
       const matchesLevel = !activeFilters.level || card.dataset.level === activeFilters.level;
       card.classList.toggle('is-hidden', !(matchesCategory && matchesLevel));
     });
-    const visible = Array.from(cards).filter(c => !c.classList.contains('is-hidden')).length;
+    currentVisible = Array.from(cards).filter(c => !c.classList.contains('is-hidden'));
     const empty = document.getElementById('no-cards');
-    if (empty) empty.style.display = visible ? 'none' : 'block';
+    if (empty) empty.style.display = currentVisible.length ? 'none' : 'block';
+    paginate();
+  }
+
+  function paginate() {
+    const total = currentVisible.length;
+    const totalPages = Math.max(1, Math.ceil(total / Pagination.PAGE_SIZE));
+    if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+    const start = (currentPage - 1) * Pagination.PAGE_SIZE;
+    const end = start + Pagination.PAGE_SIZE;
+
+    currentVisible.forEach((card, i) => {
+      card.classList.toggle('page-hidden', i < start || i >= end);
+    });
+
+    if (paginationEl) {
+      Pagination.render(paginationEl, currentPage, totalPages, page => {
+        currentPage = page;
+        paginate();
+        paginationEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
   }
 
   // Flip and drag interaction
@@ -137,4 +163,19 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
+
+  // Re-render pagination labels on language change (§1.5)
+  document.addEventListener('langchange', () => {
+    if (paginationEl) {
+      const totalPages = Math.max(1, Math.ceil(currentVisible.length / Pagination.PAGE_SIZE));
+      Pagination.render(paginationEl, currentPage, totalPages, page => {
+        currentPage = page;
+        paginate();
+        paginationEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
+  });
+
+  // Initial state
+  applyFilters();
 });

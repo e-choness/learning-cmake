@@ -77,6 +77,13 @@ en:
 
   footer: "Jekyll · Nocturne theme · built for one stubborn learner"
 
+  pagination:
+    first: "First page"
+    prev: "Previous page"
+    next: "Next page"
+    last: "Last page"
+    page: "Page"
+
 fr:
   nav: { home: Accueil, tcf: TCF, french: Français, blog: Blog, about: "À propos" }
 
@@ -154,3 +161,10 @@ fr:
     langs_value: "Interface EN / FR · contenus non traduits"
 
   footer: "Jekyll · thème Nocturne · fait pour un apprenant têtu"
+
+  pagination:
+    first: "Première page"
+    prev: "Page précédente"
+    next: "Page suivante"
+    last: "Dernière page"
+    page: "Page"
