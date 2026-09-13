@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Quand les mots français sonnent plus drôles qu’ils ne le sont
+title: When French Words Sound Funnier Than They Mean
 title_fr: "Quand les mots français sonnent plus drôles qu’ils ne le sont"
 date: 2026-09-13
 summary: "Quelques associations amusantes entre des mots français et leur sonorité anglaise, avec notamment « embauche », qui me fait penser à « ambush »."
