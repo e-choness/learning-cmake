@@ -211,6 +211,22 @@ baseurl. An absolute `https://…` URL also works. Omit `image:` entirely and no
 block renders. Prefer photographs on dark or black backgrounds: the theme blends them
 into the page with `mix-blend-mode: lighten`.
 
+### Update weekly metrics
+
+Edit `_data/metrics.csv` — one row per week, fill in the columns for the week just finished:
+
+| Column | What to enter |
+|--------|--------------|
+| `errors_per_100w` | Total errors ÷ total words written × 100 (leave blank if no writing this week) |
+| `co_q1_15` | Number correct on CO questions 1–15 from that week's mock |
+| `cards_added` | Running total of flip cards added this week |
+| `days_done` | Number of days you studied |
+| `note` | Optional one-line note (no commas — they break CSV) |
+
+Edit `_data/dictation.csv` the same way — five error-type counts per week.
+
+Edit `_data/skills.yml` after each mock exam — update the `latest:` field for each of the four skills (CO, CE, EE, EO) with your most recent score.
+
 ## 🎓 Study Goals & Tracking
 
 | Metric | Goal | Status |

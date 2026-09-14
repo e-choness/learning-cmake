@@ -1,0 +1,59 @@
+{% comment %}
+  Parameters:
+    label_en    — display label (EN)
+    label_fr    — display label (FR)
+    value       — current value string (may be empty/nil)
+    prev        — previous value string (may be empty/nil)
+    lower_is_better — true/false: direction that counts as "good"
+{% endcomment %}
+
+{% assign _has_val = false %}
+{% if include.value and include.value != '' %}
+  {% assign _has_val = true %}
+{% endif %}
+
+{% assign _has_delta = false %}
+{% assign _delta = 0 %}
+{% if _has_val and include.prev and include.prev != '' %}
+  {% assign _has_delta = true %}
+  {% assign _val_n = include.value | plus: 0 %}
+  {% assign _prv_n = include.prev  | plus: 0 %}
+  {% assign _delta = _val_n | minus: _prv_n %}
+{% endif %}
+
+{% assign _delta_class = 'muted' %}
+{% if _has_delta %}
+  {% if include.lower_is_better %}
+    {% if _delta < 0 %}
+      {% assign _delta_class = 'good' %}
+    {% elsif _delta > 0 %}
+      {% assign _delta_class = 'bad' %}
+    {% else %}
+      {% assign _delta_class = 'neutral' %}
+    {% endif %}
+  {% else %}
+    {% if _delta > 0 %}
+      {% assign _delta_class = 'good' %}
+    {% elsif _delta < 0 %}
+      {% assign _delta_class = 'bad' %}
+    {% else %}
+      {% assign _delta_class = 'neutral' %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+{% assign _delta_abs = _delta | abs | round: 1 %}
+
+<div class="metric-tile">
+  <div class="metric-label"
+       data-i18n-en="{{ include.label_en }}"
+       data-i18n-fr="{{ include.label_fr }}">{{ include.label_en }}</div>
+  <div class="metric-value">{% if _has_val %}{{ include.value }}{% else %}—{% endif %}</div>
+  <div class="metric-delta {{ _delta_class }}">
+    {% if _has_delta %}
+      {% if _delta < 0 %}▼ {{ _delta_abs }}
+      {% elsif _delta > 0 %}▲ {{ _delta_abs }}
+      {% else %}→ 0{% endif %}
+    {% else %}—{% endif %}
+  </div>
+</div>

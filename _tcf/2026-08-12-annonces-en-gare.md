@@ -7,6 +7,7 @@ level: A2
 topic: Annonces
 minutes: 8
 date: 2026-08-12
+error_categories: [prononciation, segmentation-audio]
 summary: Repérer le quai, l'heure et le motif du retard sans relire.
 brief: Écoutez chaque annonce une seule fois et notez — quai, heure, motif.
 ---

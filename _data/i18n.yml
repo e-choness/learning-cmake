@@ -75,6 +75,32 @@ en:
     row_site: Site
     langs_value: "EN / FR interface · content untranslated"
 
+  metrics:
+    nav: Metrics
+    kicker: "17-week plan"
+    title: "Progress metrics"
+    body: "Four numbers. Seventeen weeks. One exam."
+    tile_errors: "Errors / 100 w"
+    tile_co: "CO Q1–15"
+    tile_cards: "Cards added"
+    tile_days: "Days done"
+    skills_title: "NCLC gap"
+    spark_label: "Errors per 100 words"
+    spark_axis: "Wk 0 → 17"
+    dict_title: "Dictation mix"
+    dict_sound: "sound"
+    dict_boundary: "boundary"
+    dict_unknown: "unknown"
+    dict_grammar: "grammar"
+    dict_spelling: "spelling"
+    table_wk: "Wk"
+    table_ending: "Ending"
+    table_errors: "Err/100w ↓"
+    table_co: "CO Q1–15 ↑"
+    table_cards: "Cards ↑"
+    table_days: "Days ↑"
+    table_note: "Note"
+
   footer: "Jekyll · Nocturne theme · built for one stubborn learner"
 
   pagination:
@@ -159,6 +185,32 @@ fr:
     row_langs: Langues
     row_site: Site
     langs_value: "Interface EN / FR · contenus non traduits"
+
+  metrics:
+    nav: "Métriques"
+    kicker: "Plan 17 semaines"
+    title: "Métriques de progression"
+    body: "Quatre chiffres. Dix-sept semaines. Un examen."
+    tile_errors: "Erreurs / 100 m"
+    tile_co: "CO Q1–15"
+    tile_cards: "Fiches ajoutées"
+    tile_days: "Jours faits"
+    skills_title: "Écart NCLC"
+    spark_label: "Erreurs par 100 mots"
+    spark_axis: "Sem. 0 → 17"
+    dict_title: "Mix de dictée"
+    dict_sound: "son"
+    dict_boundary: "frontière"
+    dict_unknown: "inconnu"
+    dict_grammar: "gram."
+    dict_spelling: "ortho."
+    table_wk: "Sem."
+    table_ending: "Fin"
+    table_errors: "Err/100m ↓"
+    table_co: "CO Q1–15 ↑"
+    table_cards: "Fiches ↑"
+    table_days: "Jours ↑"
+    table_note: "Note"
 
   footer: "Jekyll · thème Nocturne · fait pour un apprenant têtu"
 

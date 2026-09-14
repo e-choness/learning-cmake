@@ -161,6 +161,10 @@ document.addEventListener('DOMContentLoaded', function() {
       if (activeFilters.section && item.dataset.section !== activeFilters.section) show = false;
       if (activeFilters.level && item.dataset.level !== activeFilters.level) show = false;
       if (activeFilters.topic && item.dataset.topic !== activeFilters.topic) show = false;
+      if (activeFilters.error_categories) {
+        const cats = (item.dataset.error_categories || '').split(',').filter(Boolean);
+        if (!cats.includes(activeFilters.error_categories)) show = false;
+      }
 
       if (query) {
         const haystack = fold(

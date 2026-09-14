@@ -1,0 +1,201 @@
+<div class="metrics-header">
+  <div class="kicker"
+       data-i18n-en="{{ site.data.i18n.en.metrics.kicker }}"
+       data-i18n-fr="{{ site.data.i18n.fr.metrics.kicker }}">{{ site.data.i18n.en.metrics.kicker }}</div>
+  <h1 data-i18n-en="{{ site.data.i18n.en.metrics.title }}"
+      data-i18n-fr="{{ site.data.i18n.fr.metrics.title }}">{{ site.data.i18n.en.metrics.title }}</h1>
+  <p data-i18n-en="{{ site.data.i18n.en.metrics.body }}"
+     data-i18n-fr="{{ site.data.i18n.fr.metrics.body }}">{{ site.data.i18n.en.metrics.body }}</p>
+</div>
+
+<!-- ── NCLC gap bars ─────────────────────────────────────────────── -->
+<section class="metrics-skills" data-reveal>
+  <h2 class="metrics-section-title"
+      data-i18n-en="{{ site.data.i18n.en.metrics.skills_title }}"
+      data-i18n-fr="{{ site.data.i18n.fr.metrics.skills_title }}">{{ site.data.i18n.en.metrics.skills_title }}</h2>
+
+  {% for s in site.data.skills %}
+    {% assign _has = false %}
+    {% if s.latest and s.latest != '' %}{% assign _has = true %}{% endif %}
+    {% assign _lat = s.latest | plus: 0 %}
+    {% assign _pct = 0 %}
+    {% if _has %}{% assign _pct = _lat | times: 100.0 | divided_by: s.scale %}{% endif %}
+    {% assign _tpct = s.target | times: 100.0 | divided_by: s.scale %}
+
+    <div class="skill-gap-row">
+      <span class="sgr-label">{{ s.skill }}</span>
+      <div class="sgr-track">
+        <div class="sgr-fill{% if _has and _lat < s.target %} sgr-behind{% endif %}"
+             style="width: {{ _pct }}%"></div>
+        <div class="sgr-target" style="left: {{ _tpct }}%"
+             title="{{ s.label }}: target {{ s.target }}"></div>
+      </div>
+      <span class="sgr-nums">{% if _has %}{{ s.latest }}{% else %}—{% endif %} / {{ s.target }}</span>
+      <span class="sgr-name">{{ s.label }}</span>
+    </div>
+  {% endfor %}
+</section>
+
+<!-- ── Summary tiles ─────────────────────────────────────────────── -->
+{% assign _filled = site.data.metrics | where_exp: "r", "r.errors_per_100w != '' and r.errors_per_100w" %}
+{% assign _n = _filled | size %}
+{% assign _lat_row = nil %}
+{% assign _prv_row = nil %}
+{% if _n > 0 %}
+  {% assign _lat_row = _filled | last %}
+{% endif %}
+{% if _n > 1 %}
+  {% assign _pi = _n | minus: 2 %}
+  {% assign _prv_row = _filled[_pi] %}
+{% endif %}
+
+<div class="metrics-tiles" data-reveal>
+  {% include metric-tile.html
+     label_en=site.data.i18n.en.metrics.tile_errors
+     label_fr=site.data.i18n.fr.metrics.tile_errors
+     value=_lat_row.errors_per_100w
+     prev=_prv_row.errors_per_100w
+     lower_is_better=true %}
+
+  {% include metric-tile.html
+     label_en=site.data.i18n.en.metrics.tile_co
+     label_fr=site.data.i18n.fr.metrics.tile_co
+     value=_lat_row.co_q1_15
+     prev=_prv_row.co_q1_15
+     lower_is_better=false %}
+
+  {% include metric-tile.html
+     label_en=site.data.i18n.en.metrics.tile_cards
+     label_fr=site.data.i18n.fr.metrics.tile_cards
+     value=_lat_row.cards_added
+     prev=_prv_row.cards_added
+     lower_is_better=false %}
+
+  {% include metric-tile.html
+     label_en=site.data.i18n.en.metrics.tile_days
+     label_fr=site.data.i18n.fr.metrics.tile_days
+     value=_lat_row.days_done
+     prev=_prv_row.days_done
+     lower_is_better=false %}
+</div>
+
+<!-- ── Sparkline — errors per 100 words ─────────────────────────── -->
+{% assign _mx = 0 %}
+{% for row in site.data.metrics %}
+  {% assign _v = row.errors_per_100w | plus: 0 %}
+  {% if _v > _mx %}{% assign _mx = _v %}{% endif %}
+{% endfor %}
+{% if _mx == 0 %}{% assign _mx = 1 %}{% endif %}
+
+<div class="sparkline-wrap" data-reveal>
+  <span class="spark-label"
+        data-i18n-en="{{ site.data.i18n.en.metrics.spark_label }}"
+        data-i18n-fr="{{ site.data.i18n.fr.metrics.spark_label }}">{{ site.data.i18n.en.metrics.spark_label }}</span>
+  <div class="sparkline">
+    {% for row in site.data.metrics %}
+      {% assign _has_v = false %}
+      {% if row.errors_per_100w and row.errors_per_100w != '' %}{% assign _has_v = true %}{% endif %}
+      {% assign _h = 0 %}
+      {% if _has_v %}{% assign _h = row.errors_per_100w | times: 100.0 | divided_by: _mx %}{% endif %}
+      <div class="spark-bar{% unless _has_v %} spark-empty{% endunless %}{% if _has_v and _h == 0 %} spark-zero{% endif %}"
+           style="height: {{ _h }}%"
+           title="Wk {{ row.week }}: {% if _has_v %}{{ row.errors_per_100w }}{% else %}—{% endif %}"></div>
+    {% endfor %}
+  </div>
+  <span class="spark-axis"
+        data-i18n-en="{{ site.data.i18n.en.metrics.spark_axis }}"
+        data-i18n-fr="{{ site.data.i18n.fr.metrics.spark_axis }}">{{ site.data.i18n.en.metrics.spark_axis }}</span>
+</div>
+
+<!-- ── Main table ────────────────────────────────────────────────── -->
+<div class="metrics-table-wrap" data-reveal>
+  <table class="metrics-table">
+    <thead>
+      <tr>
+        <th data-i18n-en="{{ site.data.i18n.en.metrics.table_wk }}"
+            data-i18n-fr="{{ site.data.i18n.fr.metrics.table_wk }}">{{ site.data.i18n.en.metrics.table_wk }}</th>
+        <th data-i18n-en="{{ site.data.i18n.en.metrics.table_ending }}"
+            data-i18n-fr="{{ site.data.i18n.fr.metrics.table_ending }}">{{ site.data.i18n.en.metrics.table_ending }}</th>
+        <th data-i18n-en="{{ site.data.i18n.en.metrics.table_errors }}"
+            data-i18n-fr="{{ site.data.i18n.fr.metrics.table_errors }}">{{ site.data.i18n.en.metrics.table_errors }}</th>
+        <th data-i18n-en="{{ site.data.i18n.en.metrics.table_co }}"
+            data-i18n-fr="{{ site.data.i18n.fr.metrics.table_co }}">{{ site.data.i18n.en.metrics.table_co }}</th>
+        <th data-i18n-en="{{ site.data.i18n.en.metrics.table_cards }}"
+            data-i18n-fr="{{ site.data.i18n.fr.metrics.table_cards }}">{{ site.data.i18n.en.metrics.table_cards }}</th>
+        <th data-i18n-en="{{ site.data.i18n.en.metrics.table_days }}"
+            data-i18n-fr="{{ site.data.i18n.fr.metrics.table_days }}">{{ site.data.i18n.en.metrics.table_days }}</th>
+        <th data-i18n-en="{{ site.data.i18n.en.metrics.table_note }}"
+            data-i18n-fr="{{ site.data.i18n.fr.metrics.table_note }}">{{ site.data.i18n.en.metrics.table_note }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in site.data.metrics %}
+      {% assign _row_empty = true %}
+      {% if row.errors_per_100w and row.errors_per_100w != '' %}{% assign _row_empty = false %}{% endif %}
+      <tr{% if _row_empty %} class="row-empty"{% endif %}>
+        <td>{{ row.week }}</td>
+        <td>{{ row.ending }}</td>
+        <td>{{ row.errors_per_100w | default: '—' }}</td>
+        <td>{{ row.co_q1_15 | default: '—' }}</td>
+        <td>{{ row.cards_added | default: '—' }}</td>
+        <td>{{ row.days_done | default: '—' }}</td>
+        <td class="note-cell">{{ row.note }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- ── Dictation mix ─────────────────────────────────────────────── -->
+<div class="dict-wrap" data-reveal>
+  <h2 class="metrics-section-title"
+      data-i18n-en="{{ site.data.i18n.en.metrics.dict_title }}"
+      data-i18n-fr="{{ site.data.i18n.fr.metrics.dict_title }}">{{ site.data.i18n.en.metrics.dict_title }}</h2>
+
+  <div class="dict-legend">
+    <span class="dl dl-sound"
+          data-i18n-en="{{ site.data.i18n.en.metrics.dict_sound }}"
+          data-i18n-fr="{{ site.data.i18n.fr.metrics.dict_sound }}">{{ site.data.i18n.en.metrics.dict_sound }}</span>
+    <span class="dl dl-boundary"
+          data-i18n-en="{{ site.data.i18n.en.metrics.dict_boundary }}"
+          data-i18n-fr="{{ site.data.i18n.fr.metrics.dict_boundary }}">{{ site.data.i18n.en.metrics.dict_boundary }}</span>
+    <span class="dl dl-unknown"
+          data-i18n-en="{{ site.data.i18n.en.metrics.dict_unknown }}"
+          data-i18n-fr="{{ site.data.i18n.fr.metrics.dict_unknown }}">{{ site.data.i18n.en.metrics.dict_unknown }}</span>
+    <span class="dl dl-grammar"
+          data-i18n-en="{{ site.data.i18n.en.metrics.dict_grammar }}"
+          data-i18n-fr="{{ site.data.i18n.fr.metrics.dict_grammar }}">{{ site.data.i18n.en.metrics.dict_grammar }}</span>
+    <span class="dl dl-spelling"
+          data-i18n-en="{{ site.data.i18n.en.metrics.dict_spelling }}"
+          data-i18n-fr="{{ site.data.i18n.fr.metrics.dict_spelling }}">{{ site.data.i18n.en.metrics.dict_spelling }}</span>
+  </div>
+
+  {% for row in site.data.dictation %}
+    {% assign _ds = row.sound    | plus: 0 %}
+    {% assign _db = row.boundary | plus: 0 %}
+    {% assign _du = row.unknown  | plus: 0 %}
+    {% assign _dg = row.grammar  | plus: 0 %}
+    {% assign _dp = row.spelling | plus: 0 %}
+    {% assign _dt = _ds | plus: _db | plus: _du | plus: _dg | plus: _dp %}
+
+    <div class="dict-row">
+      <span class="dict-wk">{{ row.week }}</span>
+      <div class="dict-bar">
+        {% if _dt > 0 %}
+          {% assign _sw = _ds | times: 100.0 | divided_by: _dt %}
+          {% assign _bw = _db | times: 100.0 | divided_by: _dt %}
+          {% assign _uw = _du | times: 100.0 | divided_by: _dt %}
+          {% assign _gw = _dg | times: 100.0 | divided_by: _dt %}
+          {% assign _pw = _dp | times: 100.0 | divided_by: _dt %}
+          <div class="ds ds-sound"    style="width: {{ _sw }}%"></div>
+          <div class="ds ds-boundary" style="width: {{ _bw }}%"></div>
+          <div class="ds ds-unknown"  style="width: {{ _uw }}%"></div>
+          <div class="ds ds-grammar"  style="width: {{ _gw }}%"></div>
+          <div class="ds ds-spelling" style="width: {{ _pw }}%"></div>
+        {% else %}
+          <div class="ds ds-empty" style="width: 100%"></div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

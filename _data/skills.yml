@@ -1,0 +1,20 @@
+- skill: CO
+  label: Compréhension orale
+  target: 458
+  scale: 699
+  latest:
+- skill: CE
+  label: Compréhension écrite
+  target: 453
+  scale: 699
+  latest:
+- skill: EE
+  label: Expression écrite
+  target: 10
+  scale: 20
+  latest:
+- skill: EO
+  label: Expression orale
+  target: 10
+  scale: 20
+  latest:

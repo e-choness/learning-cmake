@@ -85,7 +85,7 @@
       <div class="tache-progress-bar"></div>
     </div>
     {% for drill in group.items %}
-    <div class="drill-item rowlink" data-section="{{ drill.section }}" data-level="{{ drill.level }}" data-tache="{{ drill.tache }}" data-topic="{{ drill.topic }}" data-id="{{ drill.url | relative_url }}">
+    <div class="drill-item rowlink" data-section="{{ drill.section }}" data-level="{{ drill.level }}" data-tache="{{ drill.tache }}" data-topic="{{ drill.topic }}" data-error_categories="{{ drill.error_categories | join: ',' }}" data-id="{{ drill.url | relative_url }}">
       <button class="drill-done-btn" data-drill-id="{{ drill.url | relative_url }}"
               aria-pressed="false"
               data-i18n-aria-en="{{ site.data.i18n.en.drill.mark_done }}"

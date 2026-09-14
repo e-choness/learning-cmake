@@ -7,6 +7,7 @@ level: B1
 topic: Lettre
 minutes: 30
 date: 2026-09-07
+error_categories: [genre-accord, conjugaison, registre]
 summary: Analyse des outils linguistiques indispensables pour rédiger une lettre de réclamation formelle et sans faute en français (structures syntaxiques, connecteurs d'opposition et formules de politesse).
 brief: Ce guide méthodologique pour l'expression écrite (EE) détaille comment structurer une réclamation de manière fluide et professionnelle, en maîtrisant les contractions obligatoires, l'expression du souhait poli et les transitions formelles.
 ---

@@ -16,6 +16,19 @@ facets:
   - { key: topic,   en: Topic,   fr: Thème,
       values: [Annonces, Conversation, Actualité, Administration, Méthode,
                Présentation, Santé, Argumentation, Message, Lettre] }
+  - key: error_categories
+    en: "Error type"
+    fr: "Type d'erreur"
+    values:
+      - genre-accord
+      - conjugaison
+      - temps
+      - préposition
+      - ordre-des-mots
+      - lexique
+      - registre
+      - prononciation
+      - segmentation-audio
 
 exam:
   date: TBD

@@ -108,5 +108,7 @@ _site/
 .bundle/
 vendor/
 tcf-prep**/
+TCF_SITE_AGENT_BRIEF.md
+.obsidian/
 
 # End of https://www.toptal.com/developers/gitignore/api/jekyll

@@ -240,6 +240,13 @@ a {
   --color-text-bright: rgba(233, 233, 237, 0.85);
   --color-hover-bg: rgba(233, 233, 237, 0.05);
   --color-section-kicker: color-mix(in srgb, #{$color-accent} 68%, transparent);
+  --metric-good: #6abf7b;
+  --metric-bad: #e07070;
+  --dict-sound: #7b9fe0;
+  --dict-boundary: #a07bd6;
+  --dict-unknown: #6abf7b;
+  --dict-grammar: #e0a06a;
+  --dict-spelling: #e07070;
   --radius-md: #{$radius-md};
   --radius-lg: #{$radius-lg};
   --shadow-sm: #{$shadow-sm};
@@ -270,6 +277,13 @@ a {
   --color-text-dimmer: rgba(41, 43, 49, 0.55);
   --color-text-bright: rgba(41, 43, 49, 0.85);
   --color-hover-bg: rgba(41, 43, 49, 0.05);
+  --metric-good: #3a9e52;
+  --metric-bad: #c04545;
+  --dict-sound: #4a72b8;
+  --dict-boundary: #6e4aaa;
+  --dict-unknown: #3a9e52;
+  --dict-grammar: #b06830;
+  --dict-spelling: #c04545;
   --shadow-sm: #{$shadow-sm-light};
   --shadow-md: #{$shadow-md-light};
   --shadow-lg: #{$shadow-lg-light};
