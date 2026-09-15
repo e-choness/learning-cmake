@@ -36,6 +36,91 @@
   {% endfor %}
 </section>
 
+<!-- ── Counters ─────────────────────────────────────────────────── -->
+{% assign _cnt_filled = site.data.counters | where_exp: "r", "r.errors_retired != '' and r.errors_retired" %}
+{% assign _cnt_n = _cnt_filled | size %}
+{% assign _cnt_lat = nil %}
+{% assign _cnt_prv = nil %}
+{% if _cnt_n > 0 %}{% assign _cnt_lat = _cnt_filled | last %}{% endif %}
+{% if _cnt_n > 1 %}
+  {% assign _cnt_pi = _cnt_n | minus: 2 %}
+  {% assign _cnt_prv = _cnt_filled[_cnt_pi] %}
+{% endif %}
+
+<section class="metrics-counters" data-reveal>
+  <h2 class="metrics-section-title"
+      data-i18n-en="{{ site.data.i18n.en.metrics.counters_title }}"
+      data-i18n-fr="{{ site.data.i18n.fr.metrics.counters_title }}">{{ site.data.i18n.en.metrics.counters_title }}</h2>
+  <div class="counters-grid">
+
+    {% assign _cv = 0 %}{% assign _cp = 0 %}{% assign _chd = false %}
+    {% if _cnt_lat.errors_retired and _cnt_lat.errors_retired != '' %}{% assign _cv = _cnt_lat.errors_retired | plus: 0 %}
+      {% if _cnt_prv and _cnt_prv.errors_retired and _cnt_prv.errors_retired != '' %}{% assign _cp = _cnt_prv.errors_retired | plus: 0 %}{% assign _chd = true %}{% endif %}
+    {% endif %}
+    {% assign _cd = _cv | minus: _cp %}{% if _cd < 0 %}{% assign _cd = 0 %}{% endif %}
+    <div class="counter-item">
+      <div class="counter-value">{% if _cnt_lat.errors_retired and _cnt_lat.errors_retired != '' %}{{ _cnt_lat.errors_retired }}{% else %}—{% endif %}</div>
+      <div class="counter-delta{% unless _chd %} counter-delta-empty{% endunless %}">{% if _chd %}+{{ _cd }}{% else %}—{% endif %}</div>
+      <div class="counter-label"
+           data-i18n-en="{{ site.data.i18n.en.metrics.counters_errors }}"
+           data-i18n-fr="{{ site.data.i18n.fr.metrics.counters_errors }}">{{ site.data.i18n.en.metrics.counters_errors }}</div>
+    </div>
+
+    {% assign _cv = 0 %}{% assign _cp = 0 %}{% assign _chd = false %}
+    {% if _cnt_lat.chunks_automatic and _cnt_lat.chunks_automatic != '' %}{% assign _cv = _cnt_lat.chunks_automatic | plus: 0 %}
+      {% if _cnt_prv and _cnt_prv.chunks_automatic and _cnt_prv.chunks_automatic != '' %}{% assign _cp = _cnt_prv.chunks_automatic | plus: 0 %}{% assign _chd = true %}{% endif %}
+    {% endif %}
+    {% assign _cd = _cv | minus: _cp %}{% if _cd < 0 %}{% assign _cd = 0 %}{% endif %}
+    <div class="counter-item">
+      <div class="counter-value">{% if _cnt_lat.chunks_automatic and _cnt_lat.chunks_automatic != '' %}{{ _cnt_lat.chunks_automatic }}{% else %}—{% endif %}</div>
+      <div class="counter-delta{% unless _chd %} counter-delta-empty{% endunless %}">{% if _chd %}+{{ _cd }}{% else %}—{% endif %}</div>
+      <div class="counter-label"
+           data-i18n-en="{{ site.data.i18n.en.metrics.counters_chunks }}"
+           data-i18n-fr="{{ site.data.i18n.fr.metrics.counters_chunks }}">{{ site.data.i18n.en.metrics.counters_chunks }}</div>
+    </div>
+
+    {% assign _cv = 0 %}{% assign _cp = 0 %}{% assign _chd = false %}
+    {% if _cnt_lat.islands_cold and _cnt_lat.islands_cold != '' %}{% assign _cv = _cnt_lat.islands_cold | plus: 0 %}
+      {% if _cnt_prv and _cnt_prv.islands_cold and _cnt_prv.islands_cold != '' %}{% assign _cp = _cnt_prv.islands_cold | plus: 0 %}{% assign _chd = true %}{% endif %}
+    {% endif %}
+    {% assign _cd = _cv | minus: _cp %}{% if _cd < 0 %}{% assign _cd = 0 %}{% endif %}
+    <div class="counter-item">
+      <div class="counter-value">{% if _cnt_lat.islands_cold and _cnt_lat.islands_cold != '' %}{{ _cnt_lat.islands_cold }}{% else %}—{% endif %}</div>
+      <div class="counter-delta{% unless _chd %} counter-delta-empty{% endunless %}">{% if _chd %}+{{ _cd }}{% else %}—{% endif %}</div>
+      <div class="counter-label"
+           data-i18n-en="{{ site.data.i18n.en.metrics.counters_islands }}"
+           data-i18n-fr="{{ site.data.i18n.fr.metrics.counters_islands }}">{{ site.data.i18n.en.metrics.counters_islands }}</div>
+    </div>
+
+    {% assign _cv = 0 %}{% assign _cp = 0 %}{% assign _chd = false %}
+    {% if _cnt_lat.structures_mastered and _cnt_lat.structures_mastered != '' %}{% assign _cv = _cnt_lat.structures_mastered | plus: 0 %}
+      {% if _cnt_prv and _cnt_prv.structures_mastered and _cnt_prv.structures_mastered != '' %}{% assign _cp = _cnt_prv.structures_mastered | plus: 0 %}{% assign _chd = true %}{% endif %}
+    {% endif %}
+    {% assign _cd = _cv | minus: _cp %}{% if _cd < 0 %}{% assign _cd = 0 %}{% endif %}
+    <div class="counter-item">
+      <div class="counter-value">{% if _cnt_lat.structures_mastered and _cnt_lat.structures_mastered != '' %}{{ _cnt_lat.structures_mastered }}{% else %}—{% endif %}</div>
+      <div class="counter-delta{% unless _chd %} counter-delta-empty{% endunless %}">{% if _chd %}+{{ _cd }}{% else %}—{% endif %}</div>
+      <div class="counter-label"
+           data-i18n-en="{{ site.data.i18n.en.metrics.counters_structures }}"
+           data-i18n-fr="{{ site.data.i18n.fr.metrics.counters_structures }}">{{ site.data.i18n.en.metrics.counters_structures }}</div>
+    </div>
+
+    {% assign _cv = 0 %}{% assign _cp = 0 %}{% assign _chd = false %}
+    {% if _cnt_lat.contrasts_retired and _cnt_lat.contrasts_retired != '' %}{% assign _cv = _cnt_lat.contrasts_retired | plus: 0 %}
+      {% if _cnt_prv and _cnt_prv.contrasts_retired and _cnt_prv.contrasts_retired != '' %}{% assign _cp = _cnt_prv.contrasts_retired | plus: 0 %}{% assign _chd = true %}{% endif %}
+    {% endif %}
+    {% assign _cd = _cv | minus: _cp %}{% if _cd < 0 %}{% assign _cd = 0 %}{% endif %}
+    <div class="counter-item">
+      <div class="counter-value">{% if _cnt_lat.contrasts_retired and _cnt_lat.contrasts_retired != '' %}{{ _cnt_lat.contrasts_retired }}{% else %}—{% endif %}</div>
+      <div class="counter-delta{% unless _chd %} counter-delta-empty{% endunless %}">{% if _chd %}+{{ _cd }}{% else %}—{% endif %}</div>
+      <div class="counter-label"
+           data-i18n-en="{{ site.data.i18n.en.metrics.counters_contrasts }}"
+           data-i18n-fr="{{ site.data.i18n.fr.metrics.counters_contrasts }}">{{ site.data.i18n.en.metrics.counters_contrasts }}</div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ── Summary tiles ─────────────────────────────────────────────── -->
 {% assign _filled = site.data.metrics | where_exp: "r", "r.errors_per_100w != '' and r.errors_per_100w" %}
 {% assign _n = _filled | size %}
@@ -47,6 +132,16 @@
 {% if _n > 1 %}
   {% assign _pi = _n | minus: 2 %}
   {% assign _prv_row = _filled[_pi] %}
+{% endif %}
+
+{% assign _mx_filled = site.data.metrics | where_exp: "r", "r.mixed_set != '' and r.mixed_set" %}
+{% assign _mx_n = _mx_filled | size %}
+{% assign _mx_lat_row = nil %}
+{% assign _mx_prv_row = nil %}
+{% if _mx_n > 0 %}{% assign _mx_lat_row = _mx_filled | last %}{% endif %}
+{% if _mx_n > 1 %}
+  {% assign _mx_pi = _mx_n | minus: 2 %}
+  {% assign _mx_prv_row = _mx_filled[_mx_pi] %}
 {% endif %}
 
 <div class="metrics-tiles" data-reveal>
@@ -76,6 +171,13 @@
      label_fr=site.data.i18n.fr.metrics.tile_days
      value=_lat_row.days_done
      prev=_prv_row.days_done
+     lower_is_better=false %}
+
+  {% include metric-tile.html
+     label_en=site.data.i18n.en.metrics.tile_mixed
+     label_fr=site.data.i18n.fr.metrics.tile_mixed
+     value=_mx_lat_row.mixed_set
+     prev=_mx_prv_row.mixed_set
      lower_is_better=false %}
 </div>
 
@@ -107,6 +209,33 @@
         data-i18n-fr="{{ site.data.i18n.fr.metrics.spark_axis }}">{{ site.data.i18n.en.metrics.spark_axis }}</span>
 </div>
 
+<!-- ── Sparkline — mixed set /8 ─────────────────────────────────── -->
+{% assign _mx_spk = 8 %}
+{% for row in site.data.metrics %}
+  {% assign _mxv = row.mixed_set | plus: 0 %}
+  {% if _mxv > _mx_spk %}{% assign _mx_spk = _mxv %}{% endif %}
+{% endfor %}
+
+<div class="sparkline-wrap sparkline-wrap--mixed" data-reveal>
+  <span class="spark-label"
+        data-i18n-en="{{ site.data.i18n.en.metrics.spark_mixed_label }}"
+        data-i18n-fr="{{ site.data.i18n.fr.metrics.spark_mixed_label }}">{{ site.data.i18n.en.metrics.spark_mixed_label }}</span>
+  <div class="sparkline sparkline--mixed">
+    {% for row in site.data.metrics %}
+      {% assign _has_mxv = false %}
+      {% if row.mixed_set and row.mixed_set != '' %}{% assign _has_mxv = true %}{% endif %}
+      {% assign _mxh = 0 %}
+      {% if _has_mxv %}{% assign _mxh = row.mixed_set | times: 100.0 | divided_by: _mx_spk %}{% endif %}
+      <div class="spark-bar spark-bar--mixed{% unless _has_mxv %} spark-empty{% endunless %}{% if _has_mxv and _mxh == 0 %} spark-zero{% endif %}"
+           style="height: {{ _mxh }}%"
+           title="Wk {{ row.week }}: {% if _has_mxv %}{{ row.mixed_set }}/8{% else %}—{% endif %}"></div>
+    {% endfor %}
+  </div>
+  <span class="spark-axis"
+        data-i18n-en="{{ site.data.i18n.en.metrics.spark_mixed_axis }}"
+        data-i18n-fr="{{ site.data.i18n.fr.metrics.spark_mixed_axis }}">{{ site.data.i18n.en.metrics.spark_mixed_axis }}</span>
+</div>
+
 <!-- ── Main table ────────────────────────────────────────────────── -->
 <div class="metrics-table-wrap" data-reveal>
   <table class="metrics-table">
@@ -118,6 +247,8 @@
             data-i18n-fr="{{ site.data.i18n.fr.metrics.table_ending }}">{{ site.data.i18n.en.metrics.table_ending }}</th>
         <th data-i18n-en="{{ site.data.i18n.en.metrics.table_errors }}"
             data-i18n-fr="{{ site.data.i18n.fr.metrics.table_errors }}">{{ site.data.i18n.en.metrics.table_errors }}</th>
+        <th data-i18n-en="{{ site.data.i18n.en.metrics.table_mixed }}"
+            data-i18n-fr="{{ site.data.i18n.fr.metrics.table_mixed }}">{{ site.data.i18n.en.metrics.table_mixed }}</th>
         <th data-i18n-en="{{ site.data.i18n.en.metrics.table_co }}"
             data-i18n-fr="{{ site.data.i18n.fr.metrics.table_co }}">{{ site.data.i18n.en.metrics.table_co }}</th>
         <th data-i18n-en="{{ site.data.i18n.en.metrics.table_cards }}"
@@ -136,6 +267,7 @@
         <td>{{ row.week }}</td>
         <td>{{ row.ending }}</td>
         <td>{{ row.errors_per_100w | default: '—' }}</td>
+        <td>{{ row.mixed_set | default: '—' }}</td>
         <td>{{ row.co_q1_15 | default: '—' }}</td>
         <td>{{ row.cards_added | default: '—' }}</td>
         <td>{{ row.days_done | default: '—' }}</td>
@@ -145,6 +277,167 @@
     </tbody>
   </table>
 </div>
+
+<!-- ── Calibration ───────────────────────────────────────────────── -->
+{% assign _cal_filled = site.data.calibration | where_exp: "r", "r.listening != '' and r.listening" %}
+{% assign _cal_n = _cal_filled | size %}
+{% assign _cal_row = nil %}
+{% if _cal_n > 0 %}{% assign _cal_row = _cal_filled | last %}{% endif %}
+
+{% comment %} Find block furthest outside target band [80, 90] {% endcomment %}
+{% assign _cal_far_dist = 0 %}
+{% assign _cal_far_en = '' %}
+{% assign _cal_far_fr = '' %}
+{% if _cal_row %}
+  {% assign _bv = _cal_row.listening | plus: 0 %}
+  {% if _cal_row.listening and _cal_row.listening != '' %}
+    {% if _bv < 80 %}{% assign _bd = 80 | minus: _bv %}{% elsif _bv > 90 %}{% assign _bd = _bv | minus: 90 %}{% else %}{% assign _bd = 0 %}{% endif %}
+    {% if _bd > _cal_far_dist %}{% assign _cal_far_dist = _bd %}{% assign _cal_far_en = 'Listening' %}{% assign _cal_far_fr = 'Écoute' %}{% endif %}
+  {% endif %}
+  {% assign _bv = _cal_row.dictation | plus: 0 %}
+  {% if _cal_row.dictation and _cal_row.dictation != '' %}
+    {% if _bv < 80 %}{% assign _bd = 80 | minus: _bv %}{% elsif _bv > 90 %}{% assign _bd = _bv | minus: 90 %}{% else %}{% assign _bd = 0 %}{% endif %}
+    {% if _bd > _cal_far_dist %}{% assign _cal_far_dist = _bd %}{% assign _cal_far_en = 'Dictation' %}{% assign _cal_far_fr = 'Dictée' %}{% endif %}
+  {% endif %}
+  {% assign _bv = _cal_row.shadowing | plus: 0 %}
+  {% if _cal_row.shadowing and _cal_row.shadowing != '' %}
+    {% if _bv < 80 %}{% assign _bd = 80 | minus: _bv %}{% elsif _bv > 90 %}{% assign _bd = _bv | minus: 90 %}{% else %}{% assign _bd = 0 %}{% endif %}
+    {% if _bd > _cal_far_dist %}{% assign _cal_far_dist = _bd %}{% assign _cal_far_en = 'Shadowing' %}{% assign _cal_far_fr = 'Répétition' %}{% endif %}
+  {% endif %}
+  {% assign _bv = _cal_row.mixed_set | plus: 0 %}
+  {% if _cal_row.mixed_set and _cal_row.mixed_set != '' %}
+    {% if _bv < 80 %}{% assign _bd = 80 | minus: _bv %}{% elsif _bv > 90 %}{% assign _bd = _bv | minus: 90 %}{% else %}{% assign _bd = 0 %}{% endif %}
+    {% if _bd > _cal_far_dist %}{% assign _cal_far_dist = _bd %}{% assign _cal_far_en = 'Mixed set' %}{% assign _cal_far_fr = 'Série mixte' %}{% endif %}
+  {% endif %}
+  {% assign _bv = _cal_row.grammar | plus: 0 %}
+  {% if _cal_row.grammar and _cal_row.grammar != '' %}
+    {% if _bv < 80 %}{% assign _bd = 80 | minus: _bv %}{% elsif _bv > 90 %}{% assign _bd = _bv | minus: 90 %}{% else %}{% assign _bd = 0 %}{% endif %}
+    {% if _bd > _cal_far_dist %}{% assign _cal_far_dist = _bd %}{% assign _cal_far_en = 'Grammar' %}{% assign _cal_far_fr = 'Grammaire' %}{% endif %}
+  {% endif %}
+  {% assign _bv = _cal_row.sound_drill | plus: 0 %}
+  {% if _cal_row.sound_drill and _cal_row.sound_drill != '' %}
+    {% if _bv < 80 %}{% assign _bd = 80 | minus: _bv %}{% elsif _bv > 90 %}{% assign _bd = _bv | minus: 90 %}{% else %}{% assign _bd = 0 %}{% endif %}
+    {% if _bd > _cal_far_dist %}{% assign _cal_far_dist = _bd %}{% assign _cal_far_en = 'Sound drill' %}{% assign _cal_far_fr = 'Phonèmes' %}{% endif %}
+  {% endif %}
+{% endif %}
+
+<section class="metrics-calibration" data-reveal>
+  <h2 class="metrics-section-title"
+      data-i18n-en="{{ site.data.i18n.en.metrics.calibration_title }}"
+      data-i18n-fr="{{ site.data.i18n.fr.metrics.calibration_title }}">{{ site.data.i18n.en.metrics.calibration_title }}</h2>
+
+  <p class="cal-band-label"
+     data-i18n-en="{{ site.data.i18n.en.metrics.calibration_band }}"
+     data-i18n-fr="{{ site.data.i18n.fr.metrics.calibration_band }}">{{ site.data.i18n.en.metrics.calibration_band }}</p>
+
+  <div class="cal-bars">
+
+    {% comment %} listening {% endcomment %}
+    {% assign _bv = _cal_row.listening | plus: 0 %}
+    {% assign _bhas = false %}
+    {% if _cal_row.listening and _cal_row.listening != '' %}{% assign _bhas = true %}{% endif %}
+    {% assign _bcls = '' %}{% assign _bmrk = '' %}
+    {% if _bhas %}{% if _bv < 80 %}{% assign _bcls = 'cal-bar--low' %}{% assign _bmrk = 'low' %}{% elsif _bv > 90 %}{% assign _bcls = 'cal-bar--high' %}{% assign _bmrk = 'high' %}{% endif %}{% endif %}
+    <div class="cal-row">
+      <span class="cal-label">Listening</span>
+      <div class="cal-track-wrap">
+        <div class="cal-track-outer">
+          <div class="cal-band-overlay"></div>
+          <div class="cal-bar {{ _bcls }}" style="width: {% if _bhas %}{{ _bv }}{% else %}0{% endif %}%"></div>
+        </div>
+        <span class="cal-value">{% if _bhas %}{{ _cal_row.listening }}%{% if _bmrk == 'low' %} <span class="cal-marker cal-marker--low" data-i18n-en="↓ {{ site.data.i18n.en.metrics.calibration_low }}" data-i18n-fr="↓ {{ site.data.i18n.fr.metrics.calibration_low }}">↓ {{ site.data.i18n.en.metrics.calibration_low }}</span>{% elsif _bmrk == 'high' %} <span class="cal-marker cal-marker--high" data-i18n-en="↑ {{ site.data.i18n.en.metrics.calibration_high }}" data-i18n-fr="↑ {{ site.data.i18n.fr.metrics.calibration_high }}">↑ {{ site.data.i18n.en.metrics.calibration_high }}</span>{% endif %}{% else %}—{% endif %}</span>
+      </div>
+    </div>
+
+    {% comment %} dictation {% endcomment %}
+    {% assign _bv = _cal_row.dictation | plus: 0 %}
+    {% assign _bhas = false %}
+    {% if _cal_row.dictation and _cal_row.dictation != '' %}{% assign _bhas = true %}{% endif %}
+    {% assign _bcls = '' %}{% assign _bmrk = '' %}
+    {% if _bhas %}{% if _bv < 80 %}{% assign _bcls = 'cal-bar--low' %}{% assign _bmrk = 'low' %}{% elsif _bv > 90 %}{% assign _bcls = 'cal-bar--high' %}{% assign _bmrk = 'high' %}{% endif %}{% endif %}
+    <div class="cal-row">
+      <span class="cal-label">Dictation</span>
+      <div class="cal-track-wrap">
+        <div class="cal-track-outer">
+          <div class="cal-band-overlay"></div>
+          <div class="cal-bar {{ _bcls }}" style="width: {% if _bhas %}{{ _bv }}{% else %}0{% endif %}%"></div>
+        </div>
+        <span class="cal-value">{% if _bhas %}{{ _cal_row.dictation }}%{% if _bmrk == 'low' %} <span class="cal-marker cal-marker--low" data-i18n-en="↓ {{ site.data.i18n.en.metrics.calibration_low }}" data-i18n-fr="↓ {{ site.data.i18n.fr.metrics.calibration_low }}">↓ {{ site.data.i18n.en.metrics.calibration_low }}</span>{% elsif _bmrk == 'high' %} <span class="cal-marker cal-marker--high" data-i18n-en="↑ {{ site.data.i18n.en.metrics.calibration_high }}" data-i18n-fr="↑ {{ site.data.i18n.fr.metrics.calibration_high }}">↑ {{ site.data.i18n.en.metrics.calibration_high }}</span>{% endif %}{% else %}—{% endif %}</span>
+      </div>
+    </div>
+
+    {% comment %} shadowing {% endcomment %}
+    {% assign _bv = _cal_row.shadowing | plus: 0 %}
+    {% assign _bhas = false %}
+    {% if _cal_row.shadowing and _cal_row.shadowing != '' %}{% assign _bhas = true %}{% endif %}
+    {% assign _bcls = '' %}{% assign _bmrk = '' %}
+    {% if _bhas %}{% if _bv < 80 %}{% assign _bcls = 'cal-bar--low' %}{% assign _bmrk = 'low' %}{% elsif _bv > 90 %}{% assign _bcls = 'cal-bar--high' %}{% assign _bmrk = 'high' %}{% endif %}{% endif %}
+    <div class="cal-row">
+      <span class="cal-label">Shadowing</span>
+      <div class="cal-track-wrap">
+        <div class="cal-track-outer">
+          <div class="cal-band-overlay"></div>
+          <div class="cal-bar {{ _bcls }}" style="width: {% if _bhas %}{{ _bv }}{% else %}0{% endif %}%"></div>
+        </div>
+        <span class="cal-value">{% if _bhas %}{{ _cal_row.shadowing }}%{% if _bmrk == 'low' %} <span class="cal-marker cal-marker--low" data-i18n-en="↓ {{ site.data.i18n.en.metrics.calibration_low }}" data-i18n-fr="↓ {{ site.data.i18n.fr.metrics.calibration_low }}">↓ {{ site.data.i18n.en.metrics.calibration_low }}</span>{% elsif _bmrk == 'high' %} <span class="cal-marker cal-marker--high" data-i18n-en="↑ {{ site.data.i18n.en.metrics.calibration_high }}" data-i18n-fr="↑ {{ site.data.i18n.fr.metrics.calibration_high }}">↑ {{ site.data.i18n.en.metrics.calibration_high }}</span>{% endif %}{% else %}—{% endif %}</span>
+      </div>
+    </div>
+
+    {% comment %} mixed_set {% endcomment %}
+    {% assign _bv = _cal_row.mixed_set | plus: 0 %}
+    {% assign _bhas = false %}
+    {% if _cal_row.mixed_set and _cal_row.mixed_set != '' %}{% assign _bhas = true %}{% endif %}
+    {% assign _bcls = '' %}{% assign _bmrk = '' %}
+    {% if _bhas %}{% if _bv < 80 %}{% assign _bcls = 'cal-bar--low' %}{% assign _bmrk = 'low' %}{% elsif _bv > 90 %}{% assign _bcls = 'cal-bar--high' %}{% assign _bmrk = 'high' %}{% endif %}{% endif %}
+    <div class="cal-row">
+      <span class="cal-label">Mixed set</span>
+      <div class="cal-track-wrap">
+        <div class="cal-track-outer">
+          <div class="cal-band-overlay"></div>
+          <div class="cal-bar {{ _bcls }}" style="width: {% if _bhas %}{{ _bv }}{% else %}0{% endif %}%"></div>
+        </div>
+        <span class="cal-value">{% if _bhas %}{{ _cal_row.mixed_set }}%{% if _bmrk == 'low' %} <span class="cal-marker cal-marker--low" data-i18n-en="↓ {{ site.data.i18n.en.metrics.calibration_low }}" data-i18n-fr="↓ {{ site.data.i18n.fr.metrics.calibration_low }}">↓ {{ site.data.i18n.en.metrics.calibration_low }}</span>{% elsif _bmrk == 'high' %} <span class="cal-marker cal-marker--high" data-i18n-en="↑ {{ site.data.i18n.en.metrics.calibration_high }}" data-i18n-fr="↑ {{ site.data.i18n.fr.metrics.calibration_high }}">↑ {{ site.data.i18n.en.metrics.calibration_high }}</span>{% endif %}{% else %}—{% endif %}</span>
+      </div>
+    </div>
+
+    {% comment %} grammar {% endcomment %}
+    {% assign _bv = _cal_row.grammar | plus: 0 %}
+    {% assign _bhas = false %}
+    {% if _cal_row.grammar and _cal_row.grammar != '' %}{% assign _bhas = true %}{% endif %}
+    {% assign _bcls = '' %}{% assign _bmrk = '' %}
+    {% if _bhas %}{% if _bv < 80 %}{% assign _bcls = 'cal-bar--low' %}{% assign _bmrk = 'low' %}{% elsif _bv > 90 %}{% assign _bcls = 'cal-bar--high' %}{% assign _bmrk = 'high' %}{% endif %}{% endif %}
+    <div class="cal-row">
+      <span class="cal-label">Grammar</span>
+      <div class="cal-track-wrap">
+        <div class="cal-track-outer">
+          <div class="cal-band-overlay"></div>
+          <div class="cal-bar {{ _bcls }}" style="width: {% if _bhas %}{{ _bv }}{% else %}0{% endif %}%"></div>
+        </div>
+        <span class="cal-value">{% if _bhas %}{{ _cal_row.grammar }}%{% if _bmrk == 'low' %} <span class="cal-marker cal-marker--low" data-i18n-en="↓ {{ site.data.i18n.en.metrics.calibration_low }}" data-i18n-fr="↓ {{ site.data.i18n.fr.metrics.calibration_low }}">↓ {{ site.data.i18n.en.metrics.calibration_low }}</span>{% elsif _bmrk == 'high' %} <span class="cal-marker cal-marker--high" data-i18n-en="↑ {{ site.data.i18n.en.metrics.calibration_high }}" data-i18n-fr="↑ {{ site.data.i18n.fr.metrics.calibration_high }}">↑ {{ site.data.i18n.en.metrics.calibration_high }}</span>{% endif %}{% else %}—{% endif %}</span>
+      </div>
+    </div>
+
+    {% comment %} sound_drill {% endcomment %}
+    {% assign _bv = _cal_row.sound_drill | plus: 0 %}
+    {% assign _bhas = false %}
+    {% if _cal_row.sound_drill and _cal_row.sound_drill != '' %}{% assign _bhas = true %}{% endif %}
+    {% assign _bcls = '' %}{% assign _bmrk = '' %}
+    {% if _bhas %}{% if _bv < 80 %}{% assign _bcls = 'cal-bar--low' %}{% assign _bmrk = 'low' %}{% elsif _bv > 90 %}{% assign _bcls = 'cal-bar--high' %}{% assign _bmrk = 'high' %}{% endif %}{% endif %}
+    <div class="cal-row">
+      <span class="cal-label">Sound drill</span>
+      <div class="cal-track-wrap">
+        <div class="cal-track-outer">
+          <div class="cal-band-overlay"></div>
+          <div class="cal-bar {{ _bcls }}" style="width: {% if _bhas %}{{ _bv }}{% else %}0{% endif %}%"></div>
+        </div>
+        <span class="cal-value">{% if _bhas %}{{ _cal_row.sound_drill }}%{% if _bmrk == 'low' %} <span class="cal-marker cal-marker--low" data-i18n-en="↓ {{ site.data.i18n.en.metrics.calibration_low }}" data-i18n-fr="↓ {{ site.data.i18n.fr.metrics.calibration_low }}">↓ {{ site.data.i18n.en.metrics.calibration_low }}</span>{% elsif _bmrk == 'high' %} <span class="cal-marker cal-marker--high" data-i18n-en="↑ {{ site.data.i18n.en.metrics.calibration_high }}" data-i18n-fr="↑ {{ site.data.i18n.fr.metrics.calibration_high }}">↑ {{ site.data.i18n.en.metrics.calibration_high }}</span>{% endif %}{% else %}—{% endif %}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="cal-summary">{% if _cal_far_dist > 0 %}<span data-i18n-en="{{ _cal_far_en }}" data-i18n-fr="{{ _cal_far_fr }}">{{ _cal_far_en }}</span>{% else %}<span data-i18n-en="{{ site.data.i18n.en.metrics.calibration_all_ok }}" data-i18n-fr="{{ site.data.i18n.fr.metrics.calibration_all_ok }}">{{ site.data.i18n.en.metrics.calibration_all_ok }}</span>{% endif %}</p>
+</section>
 
 <!-- ── Dictation mix ─────────────────────────────────────────────── -->
 <div class="dict-wrap" data-reveal>

@@ -247,6 +247,11 @@ a {
   --dict-unknown: #6abf7b;
   --dict-grammar: #e0a06a;
   --dict-spelling: #e07070;
+  --cal-low: #e07070;
+  --cal-high: #e0c46a;
+  --cal-band-bg: rgba(106, 191, 123, 0.15);
+  --cal-band-edge: rgba(106, 191, 123, 0.45);
+  --spark-mixed: #e0c46a;
   --radius-md: #{$radius-md};
   --radius-lg: #{$radius-lg};
   --shadow-sm: #{$shadow-sm};
@@ -284,6 +289,11 @@ a {
   --dict-unknown: #3a9e52;
   --dict-grammar: #b06830;
   --dict-spelling: #c04545;
+  --cal-low: #c04545;
+  --cal-high: #9a7000;
+  --cal-band-bg: rgba(58, 158, 82, 0.12);
+  --cal-band-edge: rgba(58, 158, 82, 0.4);
+  --spark-mixed: #9a7000;
   --shadow-sm: #{$shadow-sm-light};
   --shadow-md: #{$shadow-md-light};
   --shadow-lg: #{$shadow-lg-light};

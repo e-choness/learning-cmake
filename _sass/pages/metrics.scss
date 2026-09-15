@@ -42,9 +42,11 @@
 // ── Shared page section wrapper ───────────────────────────────────────────────
 
 .metrics-skills,
+.metrics-counters,
 .metrics-tiles,
 .sparkline-wrap,
 .metrics-table-wrap,
+.metrics-calibration,
 .dict-wrap {
   max-width: 1200px;
   margin: 0 auto;
@@ -122,11 +124,51 @@
   letter-spacing: 0.04em;
 }
 
+// ── Counters ──────────────────────────────────────────────────────────────────
+
+.counters-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: $space-xl;
+}
+
+.counter-item {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.counter-value {
+  font-family: $font-heading;
+  font-size: 52px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.counter-delta {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+.counter-delta-empty {
+  color: var(--color-text-lighter);
+}
+
+.counter-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-lighter);
+  margin-top: $space-xs;
+}
+
 // ── Summary tiles ─────────────────────────────────────────────────────────────
 
 .metrics-tiles {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: $space-lg;
   padding-top: $space-3xl;
 }
@@ -168,7 +210,7 @@
 
 @media (max-width: $breakpoint-md) {
   .metrics-tiles {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -230,6 +272,36 @@
   letter-spacing: 0.06em;
 }
 
+// Mixed-set sparkline — hollow bars in secondary colour (shape + colour both differ)
+
+.sparkline-wrap--mixed {
+  padding-top: $space-lg;
+}
+
+.sparkline--mixed {
+  height: 48px;
+}
+
+.spark-bar--mixed {
+  background: transparent !important;
+  border: 1px solid var(--spark-mixed);
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+
+  &.spark-empty {
+    border-color: color-mix(in srgb, var(--color-text) 20%, transparent) !important;
+    height: 2px !important;
+    border-top-width: 2px !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+
+  &.spark-zero {
+    height: 3px !important;
+    border-bottom: 1px solid var(--spark-mixed) !important;
+  }
+}
+
 // ── Main table ────────────────────────────────────────────────────────────────
 
 .metrics-table-wrap {
@@ -268,6 +340,101 @@
     font-size: 13px;
     max-width: 240px;
   }
+}
+
+// ── Calibration ───────────────────────────────────────────────────────────────
+
+.cal-band-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-lighter);
+  margin-top: -$space-sm;
+  margin-bottom: $space-lg;
+}
+
+.cal-bars {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.cal-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  gap: $space-md;
+}
+
+.cal-label {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.cal-track-wrap {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+}
+
+.cal-track-outer {
+  position: relative;
+  flex: 1;
+  height: 22px;
+  background: color-mix(in srgb, var(--color-text) 8%, transparent);
+  border-radius: $radius-sm;
+  overflow: hidden;
+}
+
+.cal-band-overlay {
+  position: absolute;
+  top: 0;
+  left: 80%;
+  width: 10%;
+  height: 100%;
+  background: var(--cal-band-bg);
+  border-left: 1px solid var(--cal-band-edge);
+  border-right: 1px solid var(--cal-band-edge);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cal-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: $radius-sm 0 0 $radius-sm;
+  transition: width 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+  z-index: 1;
+}
+
+.cal-bar--low  { background: var(--cal-low); }
+.cal-bar--high { background: var(--cal-high); }
+
+.cal-value {
+  font-size: 13px;
+  color: var(--color-text-light);
+  white-space: nowrap;
+  min-width: 80px;
+}
+
+.cal-marker {
+  font-size: 11px;
+  font-weight: 500;
+  margin-left: $space-xs;
+}
+
+.cal-marker--low  { color: var(--cal-low); }
+.cal-marker--high { color: var(--cal-high); }
+
+.cal-summary {
+  margin-top: $space-lg;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
 }
 
 // ── Dictation mix ─────────────────────────────────────────────────────────────
@@ -346,12 +513,18 @@
   }
 
   .metrics-skills,
+  .metrics-counters,
   .metrics-tiles,
   .sparkline-wrap,
   .metrics-table-wrap,
+  .metrics-calibration,
   .dict-wrap {
     padding-left: $space-xl;
     padding-right: $space-xl;
+  }
+
+  .counters-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -360,5 +533,17 @@
 
   .skill-gap-row {
     grid-template-columns: 32px 1fr 64px;
+  }
+
+  .counters-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .counter-value {
+    font-size: 40px;
+  }
+
+  .cal-row {
+    grid-template-columns: 60px 1fr;
   }
 }
